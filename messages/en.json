@@ -1,0 +1,159 @@
+{
+	"metadata": {
+		"title": "Block Breaker - Play Block Breaker Online for Free",
+		"description": "Experience the most addictive Block Breaker game! Multiple game modes, unique levels provide you with a new game experience. Play online instantly, no download required.",
+		"keywords": "block breaker, free block breaker, classic block breaker, block breaker game, free online game,",
+		"game_title": "{game_name} - Play {game_name} for free at Unblocked Games",
+		"game_description": "Play this free unblocked game now! Enjoy hours of fun with this addictive online game. No downloads required, just instant gameplay. Start playing!",
+		"game_keywords": "{game_name}, unblocked games, play unblocked games, free unblocked games, online unblocked games, free online games, online games, addictive online games"
+	},
+	"nav": {
+		"3D": "3D",
+		"2player": "2-Player",
+		"multiplayer": "Multiplayer",
+		"car": "Car",
+		"moto": "Moto",
+		"puzzle": "Puzzle",
+		"racing": "Racing",
+		"sports": "Sports",
+		"adventure": "Adventure",
+		"running": "Running",
+		"skill": "Skill",
+		"shooting": "Shooting",
+		"stickman": "Stickman",
+		"others": "Others",
+		"more": "More"
+	},
+	"hero": {
+		"h2_what": "What is Block Breaker?",
+		"h2_what_p1": "The Block Breaker genre, often recognized as \"brick breakers,\" traces its roots back to the arcade classic Breakout. This simple yet addictive game involves using a paddle to deflect a ball, aiming to destroy a formation of blocks. The genre evolved with the introduction of power-ups in games such as Arkanoid, adding layers of complexity and fun. Block Breaker games are celebrated for their easy-to-grasp mechanics, making them accessible to players of all skill levels.",
+		"h2_what_p2": "The core gameplay in most Block Breaker titles remains consistent: control a paddle, keep the ball in play, and strategically target blocks to clear the level. Over time, variations have emerged, including unique level designs, diverse power-ups that alter gameplay, and even challenging boss battles. This continuous evolution keeps the Block Breaker experience fresh and engaging. Popular titles and series like Block Breaker Deluxe and DX-Ball have further solidified the enduring legacy of Block Breaker games.",
+		"h2_what_p3": "Despite the rise of complex video games, Block Breaker retains its appeal, providing quick, engaging sessions that are perfect for casual play. Whether you're a seasoned gamer or new to video games, the straightforward mechanics and the addictive nature of Block Breaker provide a satisfying blend of simple fun and compelling challenge. This genre’s timeless charm ensures that it remains a staple in the world of gaming.",
+		"h2_features": "Features of Block Breaker",
+		"h2_features_p1": "Explore the remarkable aspects that render Block Breaker an unmissable gaming experience!",
+		"h3_1": "Classic Gameplay",
+		"h3_1_p": "Block Breaker adopts the classic brick-breaking mechanics, where players control a paddle at the bottom to bounce a ball, aiming to break bricks above. Simple to pick up, yet challenging to master.",
+		"h3_2": "Dynamic Levels",
+		"h3_2_p": "The game provides a variety of level designs featuring diverse brick arrangements and increasing difficulty. This keeps the game fresh as players improve their skills, sometimes with moving blocks to add unpredictability.",
+		"h3_3": "Power-Ups",
+		"h3_3_p": "Various power-ups, such as paddle extension, ball speed increase, additional balls, and laser beams, drop from specific bricks. These can help players overcome challenging levels and add a layer of strategy.",
+		"h3_4": "Special Blocks",
+		"h3_4_p": "Different special blocks are featured in the game, some need multiple hits, some explode, and others are unbreakable. This adds complexity and interest to the game, with each type of block adding a unique challenge.",
+		"h3_5": "Physics-Based",
+		"h3_5_p": "The core mechanic of Block Breaker is physics-based. The ball's bounce angle and speed are influenced by player action and the position of the blocks, creating a more realistic feel. Accurate physics simulation is key to the game experience.",
+		"h3_6": "Simple Graphics",
+		"h3_6_p": "Block Breaker games typically feature clean, simple, and vibrant graphics, with an easy-to-understand interface, which enables players to focus on the gameplay itself and reduces the learning curve. Despite simple graphics, the gameplay is highly engaging."
+	},
+	"howToPlay": {
+		"p": "6 EASY STEPS",
+		"h2": "How to Play",
+		"h2_p": "Playing Block Breaker is simple and intuitive, even for beginners. Follow these steps to get started",
+		"h3_1": "Start the Game", 
+		"h3_1_p": "Open https://blockbreaker.im, wait a moment to load the game, then click the flag icon to start.",
+		"h3_2": "Positioning", 
+		"h3_2_p": "Control a sliding paddle at the screen's bottom, move it left and right to align with the ball's trajectory.",
+		"h3_3": "Launching", 
+		"h3_3_p": "A ball is released, it will start moving and bouncing around the game area. Your goal is to hit it.",
+		"h3_4": "Deflecting", 
+		"h3_4_p": "The paddle will make the ball change direction. Use this to angle the ball towards the blocks above.",
+		"h3_5": "Breaking", 
+		"h3_5_p": "Each impact of the ball on a block destroys it. Clear all of the blocks on the screen to advance.",
+		"h3_6": "Repeating", 
+		"h3_6_p": "Continue deflecting and breaking blocks, you clear the entire screen, you level up, and new layouts appear."
+	},
+	"faqInfo": {
+		"title": "Frequently Asked Questions",
+		"desc": "Here are some of the most frequently asked questions about Block Breaker. If you have a question that is not answered here, please feel free to reach out to us via the contact form on this website."
+	},
+	"faqs": {
+		"q1": {
+			"q": "What is the main objective in Block Breaker?",
+			"a": "The primary goal is to destroy all the bricks on the screen by bouncing a ball off a paddle you control."
+		},
+		"q2": {
+			"q": "How do you control the paddle in Block Breaker?",
+			"a": "Typically, you move the paddle horizontally using either touch controls, mouse, or keyboard arrows to keep the ball in play."
+		},
+		"q3": {
+			"q": "What happens when the ball falls below the paddle?",
+			"a": "If you fail to hit the ball with your paddle, you usually lose a life. Once all lives are lost, the game is over."
+		},
+		"q4": {
+			"q": "Are there different types of bricks in Block Breaker?",
+			"a": "Yes, many Block Breaker games feature different kinds of bricks, some require multiple hits to break, while others might have special effects when destroyed."
+		},
+		"q5": {
+			"q": "What are power-ups in Block Breaker?",
+			"a": "Power-ups are items that enhance gameplay, such as increasing paddle size, adding more balls, or slowing down the ball's speed."
+		},
+		"q6": {
+			"q": "How do you obtain power-ups in Block Breaker?",
+			"a": "Power-ups often drop from specific bricks when they are broken, and you usually need to catch them with your paddle."
+		},
+		"q7": {
+			"q": "Is there a score system in Block Breaker?",
+			"a": "Yes, most Block Breaker games keep track of your score, which usually increases as you break bricks."
+		},
+		"q8": {
+			"q": "Can the ball's speed change in Block Breaker?",
+			"a": "Yes, the ball speed can increase as levels progress, or sometimes a power-up might affect the ball's speed."
+		},
+		"q9": {
+			"q": "Do Block Breaker games have multiple levels?",
+			"a": "Yes, most versions of Block Breaker have multiple levels with increasing difficulty and different brick arrangements."
+		},
+		"q10": {
+			"q": "Are there boss battles in Block Breaker?",
+			"a": "Some advanced versions of Block Breaker might have boss battles where you need to destroy a unique boss character instead of just bricks."
+		},
+		"q11": {
+			"q": "Can you play Block Breaker on mobile devices?",
+			"a": "Yes, Block Breaker is a very common mobile game available on both Android and iOS."
+		},
+		"q12": {
+			"q": "What makes a good Block Breaker strategy?",
+			"a": "A good strategy includes aiming your shots, controlling ball speed, and strategically using power-ups to your advantage."
+		},
+		"q13": {
+			"q": "Do all Block Breaker games have the same style?",
+			"a": "No, many modern versions of Block Breaker feature unique graphics, themes, and even different gameplay mechanics."
+		},
+		"q14": {
+			"q": "Are there any versions of Block Breaker with multiplayer modes?",
+			"a": "Yes, some versions of the game offer multiplayer options where you can compete with other players."
+		},
+		"q15": {
+			"q": "Is there a time limit in Block Breaker?",
+			"a": "Usually, Block Breaker games do not have a time limit per level, but it may vary by game."
+		},
+		"q16": {
+			"q": "What happens if the ball hits the side walls?",
+			"a": "The ball will bounce off the side walls at a reflected angle. This is essential for keeping the ball in play."
+		},
+		"q17": {
+			"q": "What are some common power-ups in Block Breaker?",
+			"a": "Common power-ups include extended paddles, multiple balls, laser beams, and ball speed increase or decrease."
+		},
+		"q18": {
+			"q": "Can you customize the paddle in Block Breaker games?",
+			"a": "Some Block Breaker games offer customizable paddles, either with different shapes or skins."
+		},
+		"q19": {
+			"q": "What is a block breaker in fighting games?",
+			"a": "In some fighting games, a 'block breaker' is a special attack or move that can break through an opponent's defensive block. This is completely different from the Block Breaker game."
+		},
+		"q20": {
+			"q": "What if I am struggling to clear a level in Block Breaker?",
+			"a": "Try to focus on aiming the ball towards areas with multiple blocks to clear them faster, use power ups when needed and practice the paddle movement."
+		}
+	},
+	"others": {
+		"fullScreen": "Full Screen",
+		"youMayAlsoLike": "You may also like",
+		"relatedGames": "Related Games",
+		"games": "Games",
+		"viewMore": "View More",
+		"gamesInTotal": "Games in total",
+		"home": "Home"
+	}
+}
