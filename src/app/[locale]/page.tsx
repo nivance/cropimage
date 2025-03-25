@@ -125,16 +125,17 @@ export default function Home() {
           </p>
         </div>
 
+        <FileUpload
+          onFileSelect={handleFileSelect}
+          supportedFormats="JPG, PNG, BMP"
+        />
         {imageUrl ? (
           <ImageCropper
             imageSrc={imageUrl}
             onCancel={handleCropCancel}
           />
         ) : (
-          <FileUpload
-            onFileSelect={handleFileSelect}
-            supportedFormats="JPG, PNG, BMP"
-          />
+          <></>
         )}
       </div>
 

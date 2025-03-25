@@ -73,6 +73,17 @@ const FileUpload = ({
           <TabsTrigger value="url">Image URL</TabsTrigger>
         </TabsList>
         <TabsContent value="local">
+          <input
+            type="file"
+            id="fileInput"
+            accept={acceptedFileTypes}
+            style={{ display: 'none' }}
+            onChange={(e) => {
+              if (e.target.files && e.target.files.length > 0) {
+                onFileSelect(e.target.files[0]);
+              }
+            }}
+          />
           <Button
             variant="default"
             className="w-full bg-blue-500 hover:bg-blue-600"
