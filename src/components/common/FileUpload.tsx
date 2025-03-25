@@ -115,7 +115,7 @@ const FileUpload = ({
         </TabsContent>
       </Tabs>
 
-      <p className="text-sm text-center text-gray-500 mt-4">
+      <p className="text-sm text-center text-gray-500 mb-8">
         Supported formats: {supportedFormats}
       </p>
     </div>
