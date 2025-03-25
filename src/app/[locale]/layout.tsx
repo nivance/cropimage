@@ -1,6 +1,6 @@
 import '../globals.css';
 
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { NextIntlClientProvider, useMessages, useLocale } from 'next-intl';
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/lib/providers/theme"
@@ -16,6 +16,7 @@ export default function RootLayout(props: {
 
   // Using internationalization in Client Components
   const messages = useMessages();
+  const locale = useLocale();
 
   // The `suppressHydrationWarning` in <html> is used to prevent hydration errors caused by `next-themes`.
   // Solution provided by the package itself: https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
@@ -23,7 +24,7 @@ export default function RootLayout(props: {
   // The `suppressHydrationWarning` attribute in <body> is used to prevent hydration errors caused by Sentry Overlay,
   // which dynamically adds a `style` attribute to the body tag.
   return (
-    <html lang={props.params.locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
         {Object.keys(localeNames).map((key: string) => {
@@ -37,12 +38,12 @@ export default function RootLayout(props: {
       </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider
-          locale={props.params.locale}
+          locale={locale}
           messages={messages}
         >
           <ThemeProvider
               attribute="class"
-              defaultTheme="dark"
+              defaultTheme="light"
               disableTransitionOnChange
             >
             <Nav />

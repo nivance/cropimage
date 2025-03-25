@@ -8,21 +8,8 @@
 		"game_keywords": "{game_name}, unblocked games, play unblocked games, free unblocked games, online unblocked games, free online games, online games, addictive online games"
 	},
 	"nav": {
-		"3D": "3D",
-		"2player": "2-Player",
-		"multiplayer": "Multiplayer",
-		"car": "Car",
-		"moto": "Moto",
-		"puzzle": "Puzzle",
-		"racing": "Racing",
-		"sports": "Sports",
-		"adventure": "Adventure",
-		"running": "Running",
-		"skill": "Skill",
-		"shooting": "Shooting",
-		"stickman": "Stickman",
-		"others": "Others",
-		"more": "More"
+		"convert": "Convert image",
+		"crop": "Crop shapes"
 	},
 	"hero": {
 		"h2_what": "What is Block Breaker?",
