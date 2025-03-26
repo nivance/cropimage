@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import Cropper from 'react-easy-crop';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
@@ -53,9 +53,23 @@ const ImageCropper = ({
 
   const imageRef = useRef<HTMLImageElement | null>(null);
 
-  // Load the image to get its dimensions
+  // 重置所有状态的函数
+  const resetAllStates = useCallback(() => {
+    setCrop({ x: 0, y: 0 });
+    setZoom(1);
+    setRotation(0);
+    setSelectedShape('rect');
+    setSelectedFormat(outputFormat);
+    setSelectedAspectRatio(aspectRatio);
+    setCroppedAreaPixels(null);
+  }, [aspectRatio, outputFormat]);
+
+  // 修改 loadImageDimensions 函数
   const loadImageDimensions = useCallback(async () => {
     try {
+      // 重置所有状态
+      resetAllStates();
+      
       const img = await loadImage(imageSrc);
       imageRef.current = img;
       // 设置原始尺寸
@@ -66,12 +80,12 @@ const ImageCropper = ({
     } catch (error) {
       console.error('Error loading image:', error);
     }
-  }, [imageSrc]);
+  }, [imageSrc, resetAllStates]);
 
-  // Call loadImageDimensions when component mounts or imageSrc changes
-  useState(() => {
+  // 监听 imageSrc 的变化
+  useEffect(() => {
     loadImageDimensions();
-  });
+  }, [imageSrc, loadImageDimensions]);
 
   const onCropChange = (crop: { x: number, y: number }) => {
     setCrop(crop);
@@ -157,15 +171,10 @@ const ImageCropper = ({
     }
   };
 
-  // 添加重置功能
+  // 修改 handleReset 函数，使用 resetAllStates
   const handleReset = () => {
-    setCrop({ x: 0, y: 0 });
-    setZoom(1);
-    setRotation(0);
-    setSelectedShape('rect');
-    setSelectedFormat(outputFormat);
-    setSelectedAspectRatio(aspectRatio);
-    // 重置为原始尺寸
+    resetAllStates();
+    // 重置尺寸
     setDimensions({ ...originalDimensions });
     setPreviewDimensions({ ...originalDimensions });
   };
