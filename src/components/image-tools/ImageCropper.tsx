@@ -47,6 +47,7 @@ const ImageCropper = ({
   const [selectedShape, setSelectedShape] = useState<CropShape>(cropShape);
   const [selectedFormat, setSelectedFormat] = useState<OutputFormat>(outputFormat);
   const [loading, setLoading] = useState(false);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   const imageRef = useRef<HTMLImageElement | null>(null);
 
@@ -116,6 +117,18 @@ const ImageCropper = ({
         finalCanvas = applyCropMask(croppedCanvas, selectedShape);
       }
 
+      // Resize the image if dimensions are set
+      if (dimensions.width > 0 && dimensions.height > 0) {
+        const resizedCanvas = document.createElement('canvas');
+        resizedCanvas.width = dimensions.width;
+        resizedCanvas.height = dimensions.height;
+        const ctx = resizedCanvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(finalCanvas, 0, 0, dimensions.width, dimensions.height);
+          finalCanvas = resizedCanvas;
+        }
+      }
+
       // Get the data URL of the cropped image
       const mimeType = getMimeType(selectedFormat);
       const dataURL = createImageFromCanvas(finalCanvas, mimeType);
@@ -144,7 +157,8 @@ const ImageCropper = ({
     setRotation(0);
     setSelectedShape('rect');
     setSelectedFormat(outputFormat);
-    setSelectedAspectRatio(aspectRatio); // 重置宽高比
+    setSelectedAspectRatio(aspectRatio);
+    setDimensions({ width: 0, height: 0 }); // 重置尺寸
   };
   
   // 添加宽高比选项
@@ -171,6 +185,14 @@ const ImageCropper = ({
     if (value === 'circle') {
       setSelectedAspectRatio(1); // 圆形时强制使用 1:1 比例
     }
+  };
+
+  const handleDimensionChange = (type: 'width' | 'height', value: string) => {
+    const numValue = parseInt(value) || 0;
+    setDimensions(prev => ({
+      ...prev,
+      [type]: numValue
+    }));
   };
 
   return (
@@ -220,17 +242,17 @@ const ImageCropper = ({
           </div>
         </div>
         
-        <div className="space-y-2">
+        <div className="space-y-1">
           <label className="text-sm font-medium text-gray-700">Aspect Ratio</label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-1">
             {aspectRatios.map((ratio) => (
               <div 
                 key={ratio.label}
-                className={`border rounded-md p-2 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 transition-colors ${selectedAspectRatio === ratio.value ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}`}
+                className={`border rounded-md p-1 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 transition-colors ${selectedAspectRatio === ratio.value ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}`}
                 onClick={() => handleAspectRatioChange(ratio.value)}
               >
                 <div 
-                  className={`w-8 h-6 border ${selectedAspectRatio === ratio.value ? 'border-blue-500 bg-blue-500' : 'border-gray-400'} rounded-sm`}
+                  className={`w-6 h-4 border ${selectedAspectRatio === ratio.value ? 'border-blue-500 bg-blue-500' : 'border-gray-400'} rounded-sm`}
                   style={{
                     aspectRatio: ratio.value.toString(),
                     maxWidth: '100%',
@@ -240,6 +262,35 @@ const ImageCropper = ({
                 <span className="text-xs text-center mt-1">{ratio.label}</span>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-gray-700">Output Size</label>
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <label className="text-sm text-gray-600">W:</label>
+              <input
+                type="number"
+                value={dimensions.width || ''}
+                onChange={(e) => handleDimensionChange('width', e.target.value)}
+                className="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Width"
+                min="1"
+              />
+            </div>
+            <div className="flex items-center space-x-2">
+              <label className="text-sm text-gray-600">H:</label>
+              <input
+                type="number"
+                value={dimensions.height || ''}
+                onChange={(e) => handleDimensionChange('height', e.target.value)}
+                className="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Height"
+                min="1"
+              />
+            </div>
+            <span className="text-sm text-gray-500">px</span>
           </div>
         </div>
 
