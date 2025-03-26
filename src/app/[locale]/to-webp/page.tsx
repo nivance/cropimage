@@ -9,6 +9,7 @@ import WhyChooseUs from '@/components/common/WhyChooseUs';
 import AboutSection from '@/components/common/AboutSection';
 import FeatureSection from '@/components/common/FeatureSection';
 import { Crop, Zap, Shield } from 'lucide-react';
+import { config } from '@/lib/config';
 
 export default function ToWebpPage() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -108,7 +109,7 @@ export default function ToWebpPage() {
           <div className="bg-white p-10 rounded-md shadow-sm">
             <FileUpload
               onFileSelect={handleFileSelect}
-              supportedFormats="JPG, PNG, BMP"
+              supportedFormats={config.support_formates}
               uploadText="Drop your image here to convert to WebP"
             />
           </div>

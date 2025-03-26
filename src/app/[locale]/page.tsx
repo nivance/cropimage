@@ -122,14 +122,14 @@ export default function Home() {
           </h1>
           <p className="text-gray-600">
             Crop, resize and edit your images online for free. No registration required, no watermarks added.
-            Support JPG, PNG, BMP formats with instant processing and high quality output.
+            Support {config.support_formates} formats with instant processing and high quality output.
           </p>
         </div>
 
         <div id="upload-section" className="mb-8">
           <FileUpload
             onFileSelect={handleFileSelect}
-            supportedFormats="JPG, PNG, BMP"
+            supportedFormats={config.support_formates}
             ref={uploadRef}
           />
         </div>

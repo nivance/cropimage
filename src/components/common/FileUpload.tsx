@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { CloudUpload, Link as LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { config } from '@/lib/config';
 
 interface FileUploadProps {
   onFileSelect: (file: File | string) => void;
@@ -19,7 +20,7 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(({
   onFileSelect,
   acceptedFileTypes = 'image/*',
   maxFileSize = 10485760, // 10MB
-  supportedFormats = 'JPG, PNG, BMP, WEBP, GIF',
+  supportedFormats = config.support_formates,
   uploadText = 'Drop your image here'
 }, ref) => {
   const [urlInput, setUrlInput] = useState('');

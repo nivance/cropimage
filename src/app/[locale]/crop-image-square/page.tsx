@@ -8,6 +8,7 @@ import FaqSection from '@/components/common/FaqSection';
 import WhyChooseUs from '@/components/common/WhyChooseUs';
 import AboutSection from '@/components/common/AboutSection';
 import { createObjectURL } from '@/lib/utils/imageUtils';
+import { config } from '@/lib/config';
 
 export default function SquareCropPage() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -96,7 +97,7 @@ export default function SquareCropPage() {
         ) : (
           <FileUpload
             onFileSelect={handleFileSelect}
-            supportedFormats="JPG, PNG, BMP"
+            supportedFormats={config.support_formates}
             uploadText="Drop your image here to crop into a square"
           />
         )}
