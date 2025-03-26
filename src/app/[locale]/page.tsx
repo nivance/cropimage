@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import FileUpload from '@/components/common/FileUpload';
 import FeatureSection from '@/components/common/FeatureSection';
 import WhyChooseUs from '@/components/common/WhyChooseUs';
@@ -40,6 +40,7 @@ export const runtime = "edge";
 export default function Home() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const uploadRef = useRef<HTMLDivElement>(null);
 
   const handleFileSelect = (file: File | string) => {
     if (typeof file === 'string') {
@@ -113,7 +114,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="py-10">
+    <div className="min-h-screen py-10">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -125,17 +126,22 @@ export default function Home() {
           </p>
         </div>
 
-        <FileUpload
-          onFileSelect={handleFileSelect}
-          supportedFormats="JPG, PNG, BMP"
-        />
-        {imageUrl ? (
-          <ImageCropper
-            imageSrc={imageUrl}
-            onCancel={handleCropCancel}
+        <div id="upload-section" className="mb-8">
+          <FileUpload
+            onFileSelect={handleFileSelect}
+            supportedFormats="JPG, PNG, BMP"
+            ref={uploadRef}
           />
-        ) : (
-          <></>
+        </div>
+
+        {imageUrl && (
+          <div id="cropper-section" className="mt-8">
+            <ImageCropper
+              imageSrc={imageUrl}
+              onCancel={handleCropCancel}
+              uploadRef={uploadRef}
+            />
+          </div>
         )}
       </div>
 

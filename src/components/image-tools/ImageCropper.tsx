@@ -24,6 +24,7 @@ interface ImageCropperProps {
   initialRotation?: number;
   onCropComplete?: (croppedImage: string) => void;
   onCancel?: () => void;
+  uploadRef?: React.RefObject<HTMLDivElement>;
 }
 
 type CropShape = 'rect' | 'circle' | 'heart' | 'square' | 'polygon';
@@ -38,7 +39,8 @@ const ImageCropper = ({
   minZoom = 1,
   initialRotation = 0,
   onCropComplete,
-  onCancel
+  onCancel,
+  uploadRef
 }: ImageCropperProps) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -252,6 +254,25 @@ const ImageCropper = ({
     }
   };
 
+  // 修改 Cancel 按钮的点击处理函数
+  const handleCancel = () => {
+    // 先触发状态更新
+    if (onCancel) {
+      onCancel();
+    }
+    
+    // 延迟执行滚动，确保 DOM 已更新
+    setTimeout(() => {
+      if (uploadRef?.current) {
+        // 使用更可靠的滚动方法
+        window.scrollTo({
+          top: uploadRef.current.offsetTop - 50,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  };
+
   return (
     <div className="flex flex-col md:flex-row w-full gap-6">
       <div 
@@ -399,7 +420,7 @@ const ImageCropper = ({
           <div className="space-x-2">
             <Button
               variant="outline"
-              onClick={onCancel}
+              onClick={handleCancel}
             >
               Cancel
             </Button>

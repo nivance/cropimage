@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, forwardRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { CloudUpload, Link as LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,15 +12,16 @@ interface FileUploadProps {
   maxFileSize?: number;
   supportedFormats?: string;
   uploadText?: string;
+  uploadRef?: React.RefObject<HTMLDivElement>;
 }
 
-const FileUpload = ({
+const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(({
   onFileSelect,
   acceptedFileTypes = 'image/*',
   maxFileSize = 10485760, // 10MB
   supportedFormats = 'JPG, PNG, BMP, WEBP, GIF',
   uploadText = 'Drop your image here'
-}: FileUploadProps) => {
+}, ref) => {
   const [urlInput, setUrlInput] = useState('');
   const [activeTab, setActiveTab] = useState('local');
 
@@ -47,7 +48,7 @@ const FileUpload = ({
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto">
+    <div ref={ref} className="w-full max-w-xl mx-auto">
       <div
         {...getRootProps()}
         className={`
@@ -120,6 +121,8 @@ const FileUpload = ({
       </p>
     </div>
   );
-};
+});
+
+FileUpload.displayName = 'FileUpload';
 
 export default FileUpload;
