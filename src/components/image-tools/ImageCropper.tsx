@@ -191,7 +191,7 @@ const ImageCropper = ({
         />
       </div>
 
-      <div className="w-full md:w-1/3 p-4 space-y-4 bg-white rounded-md shadow-md">
+      <div className="w-full md:w-1/3 p-4 space-y-2 bg-white rounded-md shadow-xl border border-gray-200">
         <h2 className="text-xl font-bold text-gray-800 text-center">Crop Settings</h2>
         
         <div className="flex items-center space-x-4">
