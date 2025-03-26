@@ -191,7 +191,7 @@ const ImageCropper = ({
         />
       </div>
 
-      <div className="w-full md:w-1/3 p-4 space-y-2 bg-white rounded-md shadow-xl border border-gray-200">
+      <div className="w-full md:w-1/3 p-4 space-y-3 bg-white rounded-md shadow-xl border border-gray-200">
         <h2 className="text-xl font-bold text-gray-800 text-center">Crop Settings</h2>
         
         <div className="flex items-center space-x-4">
@@ -279,7 +279,7 @@ const ImageCropper = ({
           </Select>
         </div>
 
-        <div className="flex justify-between mt-6">
+        <div className="flex justify-between">
           <div className="space-x-2">
             <Button
               variant="outline"
