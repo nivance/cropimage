@@ -48,6 +48,8 @@ const ImageCropper = ({
   const [selectedFormat, setSelectedFormat] = useState<OutputFormat>(outputFormat);
   const [loading, setLoading] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [originalDimensions, setOriginalDimensions] = useState({ width: 0, height: 0 });
+  const [previewDimensions, setPreviewDimensions] = useState({ width: 0, height: 0 });
 
   const imageRef = useRef<HTMLImageElement | null>(null);
 
@@ -56,6 +58,11 @@ const ImageCropper = ({
     try {
       const img = await loadImage(imageSrc);
       imageRef.current = img;
+      // 设置原始尺寸
+      setOriginalDimensions({ width: img.width, height: img.height });
+      // 初始化预览和输出尺寸
+      setDimensions({ width: img.width, height: img.height });
+      setPreviewDimensions({ width: img.width, height: img.height });
     } catch (error) {
       console.error('Error loading image:', error);
     }
@@ -158,7 +165,9 @@ const ImageCropper = ({
     setSelectedShape('rect');
     setSelectedFormat(outputFormat);
     setSelectedAspectRatio(aspectRatio);
-    setDimensions({ width: 0, height: 0 }); // 重置尺寸
+    // 重置为原始尺寸
+    setDimensions({ ...originalDimensions });
+    setPreviewDimensions({ ...originalDimensions });
   };
   
   // 添加宽高比选项
@@ -178,6 +187,20 @@ const ImageCropper = ({
   
   const handleAspectRatioChange = (ratio: number) => {
     setSelectedAspectRatio(ratio);
+    
+    // 根据宽高比更新预览和输出尺寸
+    const currentWidth = previewDimensions.width;
+    const newHeight = Math.round(currentWidth / ratio);
+    
+    setPreviewDimensions(prev => ({
+      ...prev,
+      height: newHeight
+    }));
+    
+    setDimensions({
+      width: currentWidth,
+      height: newHeight
+    });
   };
 
   const handleShapeChange = (value: CropShape) => {
@@ -189,10 +212,26 @@ const ImageCropper = ({
 
   const handleDimensionChange = (type: 'width' | 'height', value: string) => {
     const numValue = parseInt(value) || 0;
-    setDimensions(prev => ({
-      ...prev,
+    
+    // 更新输出尺寸
+    const newDimensions = {
+      ...dimensions,
       [type]: numValue
-    }));
+    };
+    setDimensions(newDimensions);
+    
+    // 根据宽高比更新另一个维度
+    if (selectedAspectRatio && numValue > 0) {
+      if (type === 'width') {
+        const newHeight = Math.round(numValue / selectedAspectRatio);
+        setDimensions(prev => ({ ...prev, height: newHeight }));
+        setPreviewDimensions({ width: numValue, height: newHeight });
+      } else {
+        const newWidth = Math.round(numValue * selectedAspectRatio);
+        setDimensions(prev => ({ ...prev, width: newWidth }));
+        setPreviewDimensions({ width: newWidth, height: numValue });
+      }
+    }
   };
 
   return (
@@ -266,7 +305,12 @@ const ImageCropper = ({
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Output Size</label>
+          <div className="flex justify-between items-center">
+            <label className="text-sm font-medium text-gray-700">Output Size</label>
+            <span className="text-xs text-gray-500">
+              Original: {originalDimensions.width} × {originalDimensions.height}
+            </span>
+          </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <label className="text-sm text-gray-600">W:</label>
