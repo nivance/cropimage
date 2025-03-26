@@ -52,6 +52,7 @@ const ImageCropper = ({
   const [previewDimensions, setPreviewDimensions] = useState({ width: 0, height: 0 });
 
   const imageRef = useRef<HTMLImageElement | null>(null);
+  const cropperRef = useRef<HTMLDivElement>(null);
 
   // 重置所有状态的函数
   const resetAllStates = useCallback(() => {
@@ -77,6 +78,14 @@ const ImageCropper = ({
       // 初始化预览和输出尺寸
       setDimensions({ width: img.width, height: img.height });
       setPreviewDimensions({ width: img.width, height: img.height });
+
+      // 滚动到裁剪区域
+      setTimeout(() => {
+        cropperRef.current?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
     } catch (error) {
       console.error('Error loading image:', error);
     }
@@ -245,7 +254,10 @@ const ImageCropper = ({
 
   return (
     <div className="flex flex-col md:flex-row w-full gap-6">
-      <div className="relative w-full md:w-2/3 h-[600px] bg-gray-100 rounded-md overflow-hidden">
+      <div 
+        ref={cropperRef}
+        className="relative w-full md:w-2/3 h-[600px] bg-gray-100 rounded-md overflow-hidden"
+      >
         <Cropper
           image={imageSrc}
           crop={crop}
