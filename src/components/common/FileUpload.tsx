@@ -18,7 +18,7 @@ const FileUpload = ({
   onFileSelect,
   acceptedFileTypes = 'image/*',
   maxFileSize = 10485760, // 10MB
-  supportedFormats = 'JPG, PNG, BMP',
+  supportedFormats = 'JPG, PNG, BMP, WEBP, GIF',
   uploadText = 'Drop your image here'
 }: FileUploadProps) => {
   const [urlInput, setUrlInput] = useState('');
