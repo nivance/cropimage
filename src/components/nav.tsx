@@ -38,7 +38,7 @@ export default function Nav() {
           <span className="text-blue-500 font-extrabold font-serif" style={{ transform: 'rotate(-8deg)' }}>image</span>
         </a>
       </div>
-      <div className="flex items-center justify-between gap-x-4">
+      <div className="flex items-center justify-between gap-x-8">
         <div className="hidden lg:flex flex-grow justify-start">
           <Link className="text-base text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" href="/">{t('home')}</Link>
         </div>
