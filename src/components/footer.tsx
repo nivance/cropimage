@@ -7,12 +7,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from 'next-intl';
 import { navigation } from '@/lib/config';
 import { Separator } from '@/components/ui/separator'
+import { removeProtocolFromUrl } from "@/lib/utils";
 
 
 export default function Footer() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+
+  const siteName = removeProtocolFromUrl(config.baseUrl);
 
   const handleChange = (value: string) => {
     if (value !== locale) {
@@ -49,7 +52,7 @@ export default function Footer() {
           <a href={config.baseUrl} target="_blank"
             className="text-gray-500 hover:underline hidden md:inline-block"
           >
-            {config.baseUrl}
+            {siteName}
           </a>{" "}All rights reserved.
         </p>
         <ul role="list" className="flex justify-between">
