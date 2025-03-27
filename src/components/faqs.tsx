@@ -15,7 +15,7 @@ export default function FAQs() {
     <div className="relative py-12">
       <div className="mx-auto max-w-[70%] px-6 lg:px-8 relative grid gap-12 mb-2">
         <div className="flex flex-col gap-6 w-full">
-          <h2 className="text-3xl font-bold tracking-tighter text-center">{t('title')}</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold tracking-tighter text-center">{t('title')}</h2>
           <p className="text-base tracking-tight text-gray-500">{t('desc')}</p>
           <Accordion type="single" collapsible className="w-full text-left">
             {keys.map((key) => (
