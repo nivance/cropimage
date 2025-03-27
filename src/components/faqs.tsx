@@ -10,7 +10,7 @@ import { useTranslations } from 'next-intl';
 export default function FAQs() {
   const t = useTranslations('faqInfo');
   const faqs = useTranslations('faqs')
-  const keys = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q17', 'q18'] as const;
+  const keys = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q17', 'q18', 'q19', 'q20'] as const;
   return (
     <div className="relative py-12">
       <div className="mx-auto max-w-[70%] px-6 lg:px-8 relative grid gap-12 mb-2">

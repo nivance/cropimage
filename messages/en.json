@@ -69,88 +69,88 @@
 	},
 	"faqInfo": {
 		"title": "Frequently Asked Questions",
-		"desc": "Here are some of the most frequently asked questions about Block Breaker. If you have a question that is not answered here, please feel free to reach out to us via the contact form on this website."
+		"desc": "Here are some of the most frequently asked questions about Image Cropper. If you have a question that is not answered here, please feel free to reach out to us via the contact form on this website."
 	},
 	"faqs": {
 		"q1": {
-			"q": "What is the main objective in Block Breaker?",
-			"a": "The primary goal is to destroy all the bricks on the screen by bouncing a ball off a paddle you control."
+			"q": "Is this image cropper free to use?",
+			"a": "Yes, our online image cropper is 100% free with no hidden fees."
 		},
 		"q2": {
-			"q": "How do you control the paddle in Block Breaker?",
-			"a": "Typically, you move the paddle horizontally using either touch controls, mouse, or keyboard arrows to keep the ball in play."
+			"q": "Do I need to download any software?",
+			"a": "No, our tool works entirely online, so there's no need to download anything."
 		},
 		"q3": {
-			"q": "What happens when the ball falls below the paddle?",
-			"a": "If you fail to hit the ball with your paddle, you usually lose a life. Once all lives are lost, the game is over."
+			"q": "Do I need to create an account?",
+			"a": "No, you can use our image cropper without registration."
 		},
 		"q4": {
-			"q": "Are there different types of bricks in Block Breaker?",
-			"a": "Yes, many Block Breaker games feature different kinds of bricks, some require multiple hits to break, while others might have special effects when destroyed."
+			"q": "Will my images have watermarks?",
+			"a": "No, all images cropped using our tool are completely watermark-free."
 		},
 		"q5": {
-			"q": "What are power-ups in Block Breaker?",
-			"a": "Power-ups are items that enhance gameplay, such as increasing paddle size, adding more balls, or slowing down the ball's speed."
+			"q": "Is there a limit on how many images I can crop?",
+			"a": "No, you can crop unlimited images without any restrictions."
 		},
 		"q6": {
-			"q": "How do you obtain power-ups in Block Breaker?",
-			"a": "Power-ups often drop from specific bricks when they are broken, and you usually need to catch them with your paddle."
+			"q": "What image formats are supported?",
+			"a": "Our tool supports JPG, PNG, WEBP, GIF, BMP, and other popular formats."
 		},
 		"q7": {
-			"q": "Is there a score system in Block Breaker?",
-			"a": "Yes, most Block Breaker games keep track of your score, which usually increases as you break bricks."
+			"q": "Is my uploaded image safe?",
+			"a": "Yes, we do not store or share your uploaded images."
 		},
 		"q8": {
-			"q": "Can the ball's speed change in Block Breaker?",
-			"a": "Yes, the ball speed can increase as levels progress, or sometimes a power-up might affect the ball's speed."
+			"q": "Can I crop images on my phone?",
+			"a": "Yes, our tool works on all devices, including mobile phones and tablets."
 		},
 		"q9": {
-			"q": "Do Block Breaker games have multiple levels?",
-			"a": "Yes, most versions of Block Breaker have multiple levels with increasing difficulty and different brick arrangements."
+			"q": "Does the tool work on Mac and Windows?",
+			"a": "Yes, it works on any device with a web browser, including Mac, Windows, and Linux."
 		},
 		"q10": {
-			"q": "Are there boss battles in Block Breaker?",
-			"a": "Some advanced versions of Block Breaker might have boss battles where you need to destroy a unique boss character instead of just bricks."
+			"q": "How do I crop an image?",
+			"a": "Simply upload your image, select the area you want to keep, and download the cropped image."
 		},
 		"q11": {
-			"q": "Can you play Block Breaker on mobile devices?",
-			"a": "Yes, Block Breaker is a very common mobile game available on both Android and iOS."
+			"q": "Can I crop images to a specific size?",
+			"a": "Yes, you can manually adjust the crop area to any size you need."
 		},
 		"q12": {
-			"q": "What makes a good Block Breaker strategy?",
-			"a": "A good strategy includes aiming your shots, controlling ball speed, and strategically using power-ups to your advantage."
+			"q": "Is there a file size limit for uploads?",
+			"a": "Yes, you can upload any image under 10M."
 		},
 		"q13": {
-			"q": "Do all Block Breaker games have the same style?",
-			"a": "No, many modern versions of Block Breaker feature unique graphics, themes, and even different gameplay mechanics."
+			"q": "Can I crop multiple images at once?",
+			"a": "Currently, our tool supports cropping one image at a time."
 		},
 		"q14": {
-			"q": "Are there any versions of Block Breaker with multiplayer modes?",
-			"a": "Yes, some versions of the game offer multiplayer options where you can compete with other players."
+			"q": "Does the tool reduce image quality?",
+			"a": "No, the cropped image retains its original quality."
 		},
 		"q15": {
-			"q": "Is there a time limit in Block Breaker?",
-			"a": "Usually, Block Breaker games do not have a time limit per level, but it may vary by game."
+			"q": "Can I rotate or flip the image while cropping?",
+			"a": "Yes, you can rotate and flip images before cropping."
 		},
 		"q16": {
-			"q": "What happens if the ball hits the side walls?",
-			"a": "The ball will bounce off the side walls at a reflected angle. This is essential for keeping the ball in play."
+			"q": "Does the tool support transparent images?",
+			"a": "Yes, it supports images with transparency, such as PNG files."
 		},
 		"q17": {
-			"q": "What are some common power-ups in Block Breaker?",
-			"a": "Common power-ups include extended paddles, multiple balls, laser beams, and ball speed increase or decrease."
+			"q": "Can I undo or reset my crop selection?",
+			"a": "Yes, you can reset or adjust your selection before downloading."
 		},
 		"q18": {
-			"q": "Can you customize the paddle in Block Breaker games?",
-			"a": "Some Block Breaker games offer customizable paddles, either with different shapes or skins."
+			"q": "Is the tool available in different languages?",
+			"a": "Currently, we support English, but more languages will be added soon."
 		},
 		"q19": {
-			"q": "What is a block breaker in fighting games?",
-			"a": "In some fighting games, a 'block breaker' is a special attack or move that can break through an opponent's defensive block. This is completely different from the Block Breaker game."
+			"q": "Do I need an internet connection to use this tool?",
+			"a": "Yes, since it's an online tool, an internet connection is required."
 		},
 		"q20": {
-			"q": "What if I am struggling to clear a level in Block Breaker?",
-			"a": "Try to focus on aiming the ball towards areas with multiple blocks to clear them faster, use power ups when needed and practice the paddle movement."
+			"q": "Is this tool completely ad-free?",
+			"a": "No, but you can ignore any advertisements that may appear on the website."
 		}
 	},
 	"others": {
