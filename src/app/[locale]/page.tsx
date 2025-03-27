@@ -1,5 +1,4 @@
 import WhyChooseUs from '@/components/common/WhyChooseUs';
-import AboutSection from '@/components/common/AboutSection';
 import CropSection from '@/components/common/CropSection';
 import HowToUse from '@/components/how-to-use';
 import FAQs from '@/components/faqs';
@@ -38,7 +37,6 @@ export default function Home() {
       <HowToUse />
       <WhyChooseUs />
       <FAQs />
-      <AboutSection />
     </div>
   );
 }

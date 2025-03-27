@@ -3,10 +3,7 @@
 import { useState } from 'react';
 import FileUpload from '@/components/common/FileUpload';
 import ImageCropper from '@/components/image-tools/ImageCropper';
-import StepsSection from '@/components/common/StepsSection';
-import FaqSection from '@/components/common/FaqSection';
 import WhyChooseUs from '@/components/common/WhyChooseUs';
-import AboutSection from '@/components/common/AboutSection';
 import { createObjectURL } from '@/lib/utils/imageUtils';
 import { config } from '@/lib/config';
 
@@ -103,16 +100,8 @@ export default function CircleCropPage() {
         )}
       </div>
 
-      <StepsSection steps={cropSteps} className="mt-12" />
-
       <WhyChooseUs />
 
-      <FaqSection faqs={faqs} />
-
-      <AboutSection
-        title="About Our Circle Image Cropper"
-        description="Our circle image cropper tool is designed to help you create perfect round images for avatars, profile pictures, and creative projects. Simply upload any image, adjust the circle position, and download your perfectly cropped circular image in seconds."
-      />
     </div>
   );
 }

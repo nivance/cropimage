@@ -3,10 +3,7 @@
 import { useState } from 'react';
 import FileUpload from '@/components/common/FileUpload';
 import ImageCropper from '@/components/image-tools/ImageCropper';
-import StepsSection from '@/components/common/StepsSection';
-import FaqSection from '@/components/common/FaqSection';
 import WhyChooseUs from '@/components/common/WhyChooseUs';
-import AboutSection from '@/components/common/AboutSection';
 import { createObjectURL } from '@/lib/utils/imageUtils';
 import { config } from '@/lib/config';
 
@@ -102,17 +99,7 @@ export default function SquareCropPage() {
           />
         )}
       </div>
-
-      <StepsSection steps={cropSteps} className="mt-12" />
-
       <WhyChooseUs />
-
-      <FaqSection faqs={faqs} />
-
-      <AboutSection
-        title="About Our Square Image Cropper"
-        description="Our square image cropper is designed to help you create perfect 1:1 aspect ratio images for social media posts, profile pictures, and any platform that requires square images. Simply upload any image, adjust the square position, and download your perfectly cropped square image in seconds."
-      />
     </div>
   );
 }

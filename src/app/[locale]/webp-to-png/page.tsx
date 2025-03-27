@@ -3,10 +3,7 @@
 import { useState } from 'react';
 import FileUpload from '@/components/common/FileUpload';
 import ImageConverter from '@/components/image-tools/ImageConverter';
-import StepsSection from '@/components/common/StepsSection';
-import FaqSection from '@/components/common/FaqSection';
 import WhyChooseUs from '@/components/common/WhyChooseUs';
-import AboutSection from '@/components/common/AboutSection';
 import FeatureSection from '@/components/common/FeatureSection';
 import { Crop, Zap, Shield } from 'lucide-react';
 
@@ -115,22 +112,9 @@ export default function WebpToPngPage() {
         )}
       </div>
 
-      <StepsSection
-        title="How to Convert WEBP to PNG Online - Simple Steps"
-        steps={conversionSteps}
-        className="mt-12"
-      />
-
       <FeatureSection features={features} />
 
       <WhyChooseUs />
-
-      <FaqSection faqs={faqs} />
-
-      <AboutSection
-        title="Convert WEBP to PNG Online"
-        description="Our online WEBP to PNG converter allows you to quickly and easily convert any WEBP image into a high-quality PNG file with transparency preserved. With just a few clicks, you can convert your WebP images to PNG format for better compatibility with applications, software, and platforms that don't support WebP. No additional software is required, and the entire process happens securely in your browser, ensuring your privacy is protected."
-      />
     </div>
   );
 }

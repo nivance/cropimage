@@ -3,10 +3,7 @@
 import { useState } from 'react';
 import FileUpload from '@/components/common/FileUpload';
 import ImageConverter from '@/components/image-tools/ImageConverter';
-import StepsSection from '@/components/common/StepsSection';
-import FaqSection from '@/components/common/FaqSection';
 import WhyChooseUs from '@/components/common/WhyChooseUs';
-import AboutSection from '@/components/common/AboutSection';
 import FeatureSection from '@/components/common/FeatureSection';
 import { Crop, Zap, Shield } from 'lucide-react';
 import { config } from '@/lib/config';
@@ -116,22 +113,10 @@ export default function ToWebpPage() {
         )}
       </div>
 
-      <StepsSection
-        title="How to Convert Images to WebP - Simple Steps"
-        steps={conversionSteps}
-        className="mt-12"
-      />
-
       <FeatureSection features={features} />
 
       <WhyChooseUs />
 
-      <FaqSection faqs={faqs} />
-
-      <AboutSection
-        title="About Our WebP Converter"
-        description="Our WebP converter tool helps you optimize your images for the web by converting them to the modern WebP format. WebP offers significantly smaller file sizes compared to traditional formats like JPEG and PNG while maintaining the same visual quality. This results in faster website loading, reduced bandwidth usage, and improved user experience. Our tool is free, secure, and processes everything locally in your browser."
-      />
     </div>
   );
 }
