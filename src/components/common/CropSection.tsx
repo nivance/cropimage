@@ -5,6 +5,7 @@ import FileUpload from '@/components/common/FileUpload';
 import ImageCropper from '@/components/image-tools/ImageCropper';
 import { config } from '@/lib/config';
 import { createObjectURL } from '@/lib/utils/imageUtils';
+import { useTranslations } from 'next-intl';
 
 export default function CropSection() {
 
@@ -29,15 +30,16 @@ export default function CropSection() {
         setImageUrl(null);
     };
 
+    const t = useTranslations('home');
+
     return (
         <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                    Free online image cropping tool
+                    {t('h1')}
                 </h1>
                 <p className="text-gray-600">
-                    Crop, resize and edit your images online for free. No registration required, no watermarks added.
-                    Support {config.support_formates} formats with instant processing and high quality output.
+                    {t("h1_p")}
                 </p>
             </div>
 
@@ -45,6 +47,7 @@ export default function CropSection() {
                 <FileUpload
                     onFileSelect={handleFileSelect}
                     supportedFormats={config.support_formates}
+                    uploadText={t('upload_text')}
                     ref={uploadRef}
                 />
             </div>

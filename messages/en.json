@@ -14,8 +14,14 @@
 	},
 	"home": {
 		"h1": "Free online image cropping tool",
-		"h1_p": "Convert image",
-		"crop": "Crop shapes"
+		"h1_p": "Crop images instantly—100% free, no downloads, no registration. Unlimited use, no watermarks. Resize and crop in just a few clicks. Upload and crop now!",
+		"upload_text": "Drop your image here",
+		"local_file": "Local file",
+		"image_url": "Image URL",
+		"choose_image": "Choose Image",
+		"load": "Load",
+		"image_url_hint": "Paste image URL here",
+		"supported_formats": "Supported formats"
 	},
 	"hero": {
 		"h2_what": "What is Block Breaker?",
@@ -41,17 +47,17 @@
 		"p": "6 EASY STEPS",
 		"h2": "How to Play",
 		"h2_p": "Playing Block Breaker is simple and intuitive, even for beginners. Follow these steps to get started",
-		"h3_1": "Start the Game", 
+		"h3_1": "Start the Game",
 		"h3_1_p": "Open https://blockbreaker.im, wait a moment to load the game, then click the flag icon to start.",
-		"h3_2": "Positioning", 
+		"h3_2": "Positioning",
 		"h3_2_p": "Control a sliding paddle at the screen's bottom, move it left and right to align with the ball's trajectory.",
-		"h3_3": "Launching", 
+		"h3_3": "Launching",
 		"h3_3_p": "A ball is released, it will start moving and bouncing around the game area. Your goal is to hit it.",
-		"h3_4": "Deflecting", 
+		"h3_4": "Deflecting",
 		"h3_4_p": "The paddle will make the ball change direction. Use this to angle the ball towards the blocks above.",
-		"h3_5": "Breaking", 
+		"h3_5": "Breaking",
 		"h3_5_p": "Each impact of the ball on a block destroys it. Clear all of the blocks on the screen to advance.",
-		"h3_6": "Repeating", 
+		"h3_6": "Repeating",
 		"h3_6_p": "Continue deflecting and breaking blocks, you clear the entire screen, you level up, and new layouts appear."
 	},
 	"faqInfo": {

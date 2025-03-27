@@ -6,6 +6,7 @@ import { CloudUpload, Link as LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { config } from '@/lib/config';
+import { useTranslations } from 'next-intl';
 
 interface FileUploadProps {
   onFileSelect: (file: File | string) => void;
@@ -21,7 +22,7 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(({
   acceptedFileTypes = 'image/*',
   maxFileSize = 10485760, // 10MB
   supportedFormats = config.support_formates,
-  uploadText = 'Drop your image here'
+  uploadText,
 }, ref) => {
   const [urlInput, setUrlInput] = useState('');
   const [activeTab, setActiveTab] = useState('local');
@@ -48,6 +49,8 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(({
     }
   };
 
+  const t = useTranslations('home');
+
   return (
     <div ref={ref} className="w-full max-w-xl mx-auto">
       <div
@@ -71,8 +74,8 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(({
         className="w-full mt-4"
       >
         <TabsList className="w-full grid grid-cols-2">
-          <TabsTrigger value="local">Local File</TabsTrigger>
-          <TabsTrigger value="url">Image URL</TabsTrigger>
+          <TabsTrigger value="local">{t('local_file')}</TabsTrigger>
+          <TabsTrigger value="url">{t('image_url')}</TabsTrigger>
         </TabsList>
         <TabsContent value="local">
           <input
@@ -91,7 +94,7 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(({
             className="w-full bg-blue-500 hover:bg-blue-600"
             onClick={() => document.getElementById('fileInput')?.click()}
           >
-            Choose Image
+            {t('choose_image')}
           </Button>
         </TabsContent>
         <TabsContent value="url">
@@ -99,7 +102,7 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(({
             <div className="relative flex-grow">
               <input
                 type="text"
-                placeholder="Paste image URL here"
+                placeholder={t('image_url_hint')}
                 value={urlInput}
                 onChange={(e) => setUrlInput(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -111,14 +114,14 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(({
               className="bg-blue-500 hover:bg-blue-600"
               onClick={handleUrlSubmit}
             >
-              Load
+              {t('load')}
             </Button>
           </div>
         </TabsContent>
       </Tabs>
 
-      <p className="text-sm text-center text-gray-500 mb-8">
-        Supported formats: {supportedFormats}
+      <p className="text-sm text-center text-gray-500 mb-8 mt-4">
+        {t('supported_formats')}: {supportedFormats}
       </p>
     </div>
   );
