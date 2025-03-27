@@ -12,6 +12,11 @@
 		"convert": "Convert image",
 		"crop": "Crop shapes"
 	},
+	"home": {
+		"h1": "Free online image cropping tool",
+		"h1_p": "Convert image",
+		"crop": "Crop shapes"
+	},
 	"hero": {
 		"h2_what": "What is Block Breaker?",
 		"h2_what_p1": "The Block Breaker genre, often recognized as \"brick breakers,\" traces its roots back to the arcade classic Breakout. This simple yet addictive game involves using a paddle to deflect a ball, aiming to destroy a formation of blocks. The genre evolved with the introduction of power-ups in games such as Arkanoid, adding layers of complexity and fun. Block Breaker games are celebrated for their easy-to-grasp mechanics, making them accessible to players of all skill levels.",
