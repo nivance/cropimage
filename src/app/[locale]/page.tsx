@@ -4,6 +4,7 @@ import FaqSection from '@/components/common/FaqSection';
 import StepsSection from '@/components/common/StepsSection';
 import AboutSection from '@/components/common/AboutSection';
 import CropSection from '@/components/common/CropSection';
+import HowToUse from '@/components/how-to-use';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { config } from '@/lib/config';
@@ -92,7 +93,7 @@ export default function Home() {
     <div className="min-h-screen py-10">
       <CropSection />
 
-      <StepsSection steps={cropSteps} className="mt-12" />
+      <HowToUse />
 
       <FeatureSection />
 

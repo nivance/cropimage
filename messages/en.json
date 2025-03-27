@@ -43,22 +43,22 @@
 		"h3_6": "Simple Graphics",
 		"h3_6_p": "Block Breaker games typically feature clean, simple, and vibrant graphics, with an easy-to-understand interface, which enables players to focus on the gameplay itself and reduces the learning curve. Despite simple graphics, the gameplay is highly engaging."
 	},
-	"howToPlay": {
+	"howToUse": {
 		"p": "6 EASY STEPS",
-		"h2": "How to Play",
-		"h2_p": "Playing Block Breaker is simple and intuitive, even for beginners. Follow these steps to get started",
-		"h3_1": "Start the Game",
-		"h3_1_p": "Open https://blockbreaker.im, wait a moment to load the game, then click the flag icon to start.",
-		"h3_2": "Positioning",
-		"h3_2_p": "Control a sliding paddle at the screen's bottom, move it left and right to align with the ball's trajectory.",
-		"h3_3": "Launching",
-		"h3_3_p": "A ball is released, it will start moving and bouncing around the game area. Your goal is to hit it.",
-		"h3_4": "Deflecting",
-		"h3_4_p": "The paddle will make the ball change direction. Use this to angle the ball towards the blocks above.",
-		"h3_5": "Breaking",
-		"h3_5_p": "Each impact of the ball on a block destroys it. Clear all of the blocks on the screen to advance.",
-		"h3_6": "Repeating",
-		"h3_6_p": "Continue deflecting and breaking blocks, you clear the entire screen, you level up, and new layouts appear."
+		"h2": "How to Crop Images Online for Free",
+		"h2_p": "To crop images online for free, follow these steps:",
+		"h3_1": "Upload an image",
+		"h3_1_p": "Upload your image by clicking the \"Choose Image\" button or simply drag and drop your file into the upload area. You can also paste an image URL if you prefer.",
+		"h3_2": "Adjust crop area",
+		"h3_2_p": "Use the crop frame to select the area you want to keep. You can zoom in and out using the Zoom button, or rotate the angle of the crop area using the Rotation button.",
+		"h3_3": "Adjust aspect ratio",
+		"h3_3_p": "There are 9 aspect ratios to choose from, each of which can be previewed. Select the aspect ratio that best suits your needs.",
+		"h3_4": "Choose shape and output format",
+		"h3_4_p": "There are 2 crop shapes and 3 output formats to choose from. Choose the one that best suits your needs.",
+		"h3_5": "Fine-tune settings",
+		"h3_5_p": "Adjust the crop dimensions and position using the control panel. You can enter precise values for width, height, shape, position and output format.",
+		"h3_6": "Save your image",
+		"h3_6_p": "Click the \"Crop Image\" button to download your cropped image. The result will maintain the original image quality without any watermarks."
 	},
 	"faqInfo": {
 		"title": "Frequently Asked Questions",
