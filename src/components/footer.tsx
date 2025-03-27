@@ -49,7 +49,7 @@ export default function Footer() {
           <a href={config.baseUrl} target="_blank"
             className="text-gray-500 hover:underline hidden md:inline-block"
           >
-            blockbreaker.im
+            {config.baseUrl}
           </a>{" "}All rights reserved.
         </p>
         <ul role="list" className="flex justify-between">

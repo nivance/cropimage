@@ -8,11 +8,9 @@ import { config } from '@/lib/config';
 
 export const runtime = "edge";
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata(context: { params: { locale: string } }): Promise<Metadata> {
+  const { params } = await context;
+  const { locale } = await params;
   const t = await getTranslations('metadata');
   return {
     title: t("title"),
@@ -26,7 +24,7 @@ export async function generateMetadata({
     ],
     alternates: {
       canonical: `${config.baseUrl}/${locale !== "en" ? locale : ""}`,
-    } 
+    }
   };
 }
 

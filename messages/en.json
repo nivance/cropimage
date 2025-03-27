@@ -1,11 +1,8 @@
 {
 	"metadata": {
-		"title": "Block Breaker - Play Block Breaker Online for Free",
-		"description": "Experience the most addictive Block Breaker game! Multiple game modes, unique levels provide you with a new game experience. Play online instantly, no download required.",
-		"keywords": "block breaker, free block breaker, classic block breaker, block breaker game, free online game,",
-		"game_title": "{game_name} - Play {game_name} for free at Unblocked Games",
-		"game_description": "Play this free unblocked game now! Enjoy hours of fun with this addictive online game. No downloads required, just instant gameplay. Start playing!",
-		"game_keywords": "{game_name}, unblocked games, play unblocked games, free unblocked games, online unblocked games, free online games, online games, addictive online games"
+		"title": "Crop Image - Online for Free, Instantly, No Watermarks",
+  		"description": "Crop image online for free with our easy-to-use tool. No downloads, no registration, no watermarks—just fast and unlimited image cropping. Supports JPG, PNG, WEBP, WEBP and more!",
+  		"keywords": "crop image, resize image, crop photo, cut image, crop picture, free online image cropper, online photo crop, image cropping tool, image cropper, unlimited image crop"
 	},
 	"nav": {
 		"home": "Home",
@@ -14,7 +11,7 @@
 	},
 	"home": {
 		"h1": "Free online image cropping tool",
-		"h1_p": "Crop images instantly—100% free, no downloads, no registration. Unlimited use, no watermarks. Resize and crop in just a few clicks. Upload and crop now!",
+		"h1_p": "Crop image instantly—100% free, no downloads, no registration. Unlimited use, no watermarks. Resize and crop in just a few clicks. Upload and crop now!",
 		"upload_text": "Drop your image here",
 		"local_file": "Local file",
 		"image_url": "Image URL",
@@ -52,8 +49,8 @@
 	},
 	"howToUse": {
 		"p": "6 EASY STEPS",
-		"h2": "How to Crop Images Online for Free",
-		"h2_p": "To crop images online for free, follow these steps:",
+		"h2": "How to Crop Image Online for Free",
+		"h2_p": "To crop image online for free, follow these steps:",
 		"h3_1": "Upload an image",
 		"h3_1_p": "Upload your image by clicking the \"Choose Image\" button or simply drag and drop your file into the upload area. You can also paste an image URL if you prefer.",
 		"h3_2": "Adjust crop area",
@@ -69,7 +66,7 @@
 	},
 	"faqInfo": {
 		"title": "Frequently Asked Questions",
-		"desc": "Here are some of the most frequently asked questions about Image Cropper. If you have a question that is not answered here, please feel free to reach out to us via the contact form on this website."
+		"desc": "Here are some of the most frequently asked questions about Crop Image. If you have a question that is not answered here, please feel free to reach out to us via the contact form on this website."
 	},
 	"faqs": {
 		"q1": {
@@ -82,7 +79,7 @@
 		},
 		"q3": {
 			"q": "Do I need to create an account?",
-			"a": "No, you can use our image cropper without registration."
+			"a": "No, you can use our site to crop image without registration."
 		},
 		"q4": {
 			"q": "Will my images have watermarks?",
@@ -101,7 +98,7 @@
 			"a": "Yes, we do not store or share your uploaded images."
 		},
 		"q8": {
-			"q": "Can I crop images on my phone?",
+			"q": "Can I crop image on my phone?",
 			"a": "Yes, our tool works on all devices, including mobile phones and tablets."
 		},
 		"q9": {
@@ -109,11 +106,11 @@
 			"a": "Yes, it works on any device with a web browser, including Mac, Windows, and Linux."
 		},
 		"q10": {
-			"q": "How do I crop an image?",
+			"q": "How do I crop image?",
 			"a": "Simply upload your image, select the area you want to keep, and download the cropped image."
 		},
 		"q11": {
-			"q": "Can I crop images to a specific size?",
+			"q": "Can I crop image to a specific size?",
 			"a": "Yes, you can manually adjust the crop area to any size you need."
 		},
 		"q12": {
