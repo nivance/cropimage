@@ -24,7 +24,7 @@
 	"whyus": {
 		"free_crop": {
 			"title": "Free Crop",
-			"description": "Crop your images to any size you want"
+			"description": "Crop image to any size you want"
 		},
 		"fast_process": {
 			"title": "Fast Process",
@@ -48,7 +48,7 @@
 		}
 	},
 	"howToUse": {
-		"p": "6 EASY STEPS",
+		"p": "6 EASY STEPS CROP IMAGE",
 		"h2": "How to Crop Image Online for Free",
 		"h2_p": "To crop image online for free, follow these steps:",
 		"h3_1": "Upload an image",
@@ -66,7 +66,7 @@
 	},
 	"faqInfo": {
 		"title": "Frequently Asked Questions",
-		"desc": "Here are some of the most frequently asked questions about Crop Image. If you have a question that is not answered here, please feel free to reach out to us via the contact form on this website."
+		"desc": "Here are some of the most frequently asked questions about Crop Image. If you have a question about Crop Image that is not answered here, please feel free to reach out to us via the contact form on this website."
 	},
 	"faqs": {
 		"q1": {
@@ -122,7 +122,7 @@
 			"a": "Currently, our tool supports cropping one image at a time."
 		},
 		"q14": {
-			"q": "Does the tool reduce image quality?",
+			"q": "Does the crop image tool reduce image quality?",
 			"a": "No, the cropped image retains its original quality."
 		},
 		"q15": {
@@ -130,33 +130,24 @@
 			"a": "Yes, you can rotate and flip images before cropping."
 		},
 		"q16": {
-			"q": "Does the tool support transparent images?",
+			"q": "Does the crop image tool support transparent images?",
 			"a": "Yes, it supports images with transparency, such as PNG files."
 		},
 		"q17": {
-			"q": "Can I undo or reset my crop selection?",
+			"q": "Can I undo or reset my crop image selection?",
 			"a": "Yes, you can reset or adjust your selection before downloading."
 		},
 		"q18": {
-			"q": "Is the tool available in different languages?",
+			"q": "Is the crop image tool available in different languages?",
 			"a": "Currently, we support English, but more languages will be added soon."
 		},
 		"q19": {
-			"q": "Do I need an internet connection to use this tool?",
-			"a": "Yes, since it's an online tool, an internet connection is required."
+			"q": "Do I need an internet connection to use this crop image tool?",
+			"a": "Yes, since it's an online crop image tool, an internet connection is required."
 		},
 		"q20": {
-			"q": "Is this tool completely ad-free?",
+			"q": "Is this crop image tool completely ad-free?",
 			"a": "No, but you can ignore any advertisements that may appear on the website."
 		}
-	},
-	"others": {
-		"fullScreen": "Full Screen",
-		"youMayAlsoLike": "You may also like",
-		"relatedGames": "Related Games",
-		"games": "Games",
-		"viewMore": "View More",
-		"gamesInTotal": "Games in total",
-		"home": "Home"
 	}
 }
