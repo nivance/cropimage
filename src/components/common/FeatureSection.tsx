@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from 'react';
-import { Crop, Zap, Shield } from 'lucide-react';
+import { Crop, Zap, Shield, Ban, Image } from 'lucide-react';
 
 interface Feature {
   icon: ReactNode;
@@ -29,6 +29,21 @@ const defaultFeatures: Feature[] = [
     icon: <Shield className="h-8 w-8 text-blue-500" />,
     title: "Secure",
     description: "Local processing, privacy protected"
+  },
+  {
+    icon: <Ban className="h-12 w-12 text-blue-500 mx-auto mb-4" />,
+    title: "No Watermark",
+    description: "Our free image cropper doesn't add any watermarks to your images. Get clean, professional results every time."
+  },
+  {
+    icon: <Image className="h-12 w-12 text-blue-500 mx-auto mb-4" />,
+    title: "All Formats Supported",
+    description: "Support for all major image formats including JPG, PNG, and BMP. No conversion needed."
+  },
+  {
+    icon: <Shield className="h-12 w-12 text-blue-500 mx-auto mb-4" />,
+    title: "Privacy Protected",
+    description: "All processing is done in your browser. Your images are never uploaded to our servers."
   }
 ];
 

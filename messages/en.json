@@ -21,27 +21,34 @@
 		"choose_image": "Choose Image",
 		"load": "Load",
 		"image_url_hint": "Paste image URL here",
-		"supported_formats": "Supported formats"
+		"supported_formats": "Supported formats",
+		"whyus": "Why Choose Our Image Cropper"
 	},
-	"hero": {
-		"h2_what": "What is Block Breaker?",
-		"h2_what_p1": "The Block Breaker genre, often recognized as \"brick breakers,\" traces its roots back to the arcade classic Breakout. This simple yet addictive game involves using a paddle to deflect a ball, aiming to destroy a formation of blocks. The genre evolved with the introduction of power-ups in games such as Arkanoid, adding layers of complexity and fun. Block Breaker games are celebrated for their easy-to-grasp mechanics, making them accessible to players of all skill levels.",
-		"h2_what_p2": "The core gameplay in most Block Breaker titles remains consistent: control a paddle, keep the ball in play, and strategically target blocks to clear the level. Over time, variations have emerged, including unique level designs, diverse power-ups that alter gameplay, and even challenging boss battles. This continuous evolution keeps the Block Breaker experience fresh and engaging. Popular titles and series like Block Breaker Deluxe and DX-Ball have further solidified the enduring legacy of Block Breaker games.",
-		"h2_what_p3": "Despite the rise of complex video games, Block Breaker retains its appeal, providing quick, engaging sessions that are perfect for casual play. Whether you're a seasoned gamer or new to video games, the straightforward mechanics and the addictive nature of Block Breaker provide a satisfying blend of simple fun and compelling challenge. This genre’s timeless charm ensures that it remains a staple in the world of gaming.",
-		"h2_features": "Features of Block Breaker",
-		"h2_features_p1": "Explore the remarkable aspects that render Block Breaker an unmissable gaming experience!",
-		"h3_1": "Classic Gameplay",
-		"h3_1_p": "Block Breaker adopts the classic brick-breaking mechanics, where players control a paddle at the bottom to bounce a ball, aiming to break bricks above. Simple to pick up, yet challenging to master.",
-		"h3_2": "Dynamic Levels",
-		"h3_2_p": "The game provides a variety of level designs featuring diverse brick arrangements and increasing difficulty. This keeps the game fresh as players improve their skills, sometimes with moving blocks to add unpredictability.",
-		"h3_3": "Power-Ups",
-		"h3_3_p": "Various power-ups, such as paddle extension, ball speed increase, additional balls, and laser beams, drop from specific bricks. These can help players overcome challenging levels and add a layer of strategy.",
-		"h3_4": "Special Blocks",
-		"h3_4_p": "Different special blocks are featured in the game, some need multiple hits, some explode, and others are unbreakable. This adds complexity and interest to the game, with each type of block adding a unique challenge.",
-		"h3_5": "Physics-Based",
-		"h3_5_p": "The core mechanic of Block Breaker is physics-based. The ball's bounce angle and speed are influenced by player action and the position of the blocks, creating a more realistic feel. Accurate physics simulation is key to the game experience.",
-		"h3_6": "Simple Graphics",
-		"h3_6_p": "Block Breaker games typically feature clean, simple, and vibrant graphics, with an easy-to-understand interface, which enables players to focus on the gameplay itself and reduces the learning curve. Despite simple graphics, the gameplay is highly engaging."
+	"whyus": {
+		"free_crop": {
+			"title": "Free Crop",
+			"description": "Crop your images to any size you want"
+		},
+		"fast_process": {
+			"title": "Fast Process",
+			"description": "Quick and efficient online processing"
+		},
+		"secure": {
+			"title": "Secure",
+			"description": "Local processing, privacy protected"
+		},
+		"no_watermark": {
+			"title": "No Watermark",
+			"description": "Our free image cropper doesn't add any watermarks to your images. Get clean, professional results every time."
+		},
+		"supported_formats": {
+			"title": "All Formats Supported",
+			"description": "Support for all major image formats including JPG, JPEG, PNG, BMP, GIF, WEBP. No conversion needed."
+		},
+		"privacy_protected": {
+			"title": "Privacy Protected",
+			"description": "All processing is done in your browser. Your images are never uploaded to our servers."
+		}
 	},
 	"howToUse": {
 		"p": "6 EASY STEPS",

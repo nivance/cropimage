@@ -35,29 +35,6 @@ export async function generateMetadata({
 
 export default function Home() {
 
-  const cropSteps = [
-    {
-      number: 1,
-      title: "Upload an image",
-      description: "Upload your image by clicking the \"Choose Image\" button or simply drag and drop your file into the upload area. You can also paste an image URL if you prefer."
-    },
-    {
-      number: 2,
-      title: "Adjust crop area",
-      description: "Use the crop frame to select the area you want to keep. You can drag the corners to resize or input exact dimensions in the settings panel."
-    },
-    {
-      number: 3,
-      title: "Fine-tune settings",
-      description: "Adjust the crop dimensions and position using the control panel. You can enter precise values for width, height, and position."
-    },
-    {
-      number: 4,
-      title: "Save your image",
-      description: "Click the \"Crop Image\" button to download your cropped image. The result will maintain the original image quality without any watermarks."
-    }
-  ];
-
   const faqs = [
     {
       question: "What shapes are available for image cropping?",
@@ -92,15 +69,9 @@ export default function Home() {
   return (
     <div className="min-h-screen py-10">
       <CropSection />
-
       <HowToUse />
-
-      <FeatureSection />
-
       <WhyChooseUs />
-
       <FaqSection faqs={faqs} />
-
       <AboutSection />
     </div>
   );
