@@ -1,33 +1,25 @@
 "use client";
 
-import { useState, useCallback, forwardRef } from 'react';
+import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { CloudUpload, Link as LinkIcon } from 'lucide-react';
-import { config } from '@/lib/config';
-import { useTranslations } from 'next-intl';
+import { CloudUpload } from 'lucide-react';
 
 interface ConvertUploadProps {
-  onFileSelect: (file: File | string) => void;
+  onFileSelect: (files: File[] | string[]) => void;
   acceptedFileTypes?: string;
   maxFileSize?: number;
-  supportedFormats?: string;
   uploadText?: string;
-  uploadRef?: React.RefObject<HTMLDivElement>;
 }
 
-const ConvertUpload = forwardRef<HTMLDivElement, ConvertUploadProps>(({
+const ConvertUpload = ({
   onFileSelect,
   acceptedFileTypes = 'image/*',
   maxFileSize = 10485760, // 10MB
-  uploadText,
-}, ref) => {
-  const [urlInput, setUrlInput] = useState('');
-  const [activeTab, setActiveTab] = useState('local');
-
+  uploadText = 'Drop your files here'
+}: ConvertUploadProps) => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
-      const file = acceptedFiles[0];
-      onFileSelect(file);
+      onFileSelect(acceptedFiles);
     }
   }, [onFileSelect]);
 
@@ -37,36 +29,27 @@ const ConvertUpload = forwardRef<HTMLDivElement, ConvertUploadProps>(({
       'image/*': []
     },
     maxSize: maxFileSize,
-    multiple: false
+    multiple: true
   });
 
-  const handleUrlSubmit = () => {
-    if (urlInput.trim()) {
-      onFileSelect(urlInput);
-    }
-  };
-
-  const t = useTranslations('home');
-
   return (
-    <div ref={ref} className="w-full max-w-2xl mx-auto">
-      <div
-        {...getRootProps()}
-        className={`
-          border-2 border-dashed rounded-md p-24 text-center cursor-pointer transition-colors
-          ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400'}
-        `}
-      >
-        <input {...getInputProps()} />
-        <div className="flex flex-col items-center">
-          <CloudUpload className="h-12 w-12 text-blue-500 mb-4" />
-          <p className="text-lg font-medium text-gray-700">{uploadText}</p>
-        </div>
+    <div
+      {...getRootProps()}
+      className={`
+        max-w-3xl mx-auto border-2 border-dashed rounded-md p-20 text-center cursor-pointer transition-colors
+        ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400'}
+      `}
+    >
+      <input {...getInputProps()} />
+      <div className="flex flex-col items-center">
+        <CloudUpload className="h-12 w-12 text-blue-500 mb-4" />
+        <p className="text-lg font-medium text-gray-700">{uploadText}</p>
+        <p className="text-sm text-gray-500 mt-2">
+          You can upload multiple images at once
+        </p>
       </div>
     </div>
   );
-});
-
-ConvertUpload.displayName = 'ConvertUpload';
+};
 
 export default ConvertUpload;
