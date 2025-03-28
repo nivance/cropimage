@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import FileUpload from '@/components/common/FileUpload';
+import ConvertUpload from '@/components/common/ConvertUpload';
 import ImageConverter from '@/components/image-tools/ImageConverter';
 import WhyChooseUs from '@/components/common/WhyChooseUs';
 import FeatureSection from '@/components/common/FeatureSection';
@@ -82,14 +82,12 @@ export default function WebpToJpgPage() {
   return (
     <div className="py-10">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <div className="max-w-3xl mx-auto text-center mb-4">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Convert WEBP to JPG
           </h1>
           <p className="text-gray-600">
-            Quickly convert your WEBP images to JPG format.
-            Free online conversion with no software installation required.
-            Maintain quality and convert in seconds.
+            Quickly convert your WEBP images to JPG format.Free online conversion with no software installation required. Maintain quality and convert in seconds.
           </p>
         </div>
 
@@ -103,10 +101,9 @@ export default function WebpToJpgPage() {
           />
         ) : (
           <div className="bg-white p-10 rounded-md shadow-sm">
-            <FileUpload
+            <ConvertUpload
               onFileSelect={handleFileSelect}
-              supportedFormats="WEBP"
-              uploadText="Drop your WEBP image here"
+              uploadText="Drop your WEBP image or press here to upload"
             />
           </div>
         )}
