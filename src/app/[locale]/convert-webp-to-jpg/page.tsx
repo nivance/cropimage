@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import ConvertUpload from '@/components/common/ConvertUpload';
 import ImageConverter from '@/components/image-tools/ImageConverter';
-import WhyChooseUs from '@/components/common/WhyChooseUs';
-import FeatureSection from '@/components/common/FeatureSection';
+import WhyChooseUsConverter from '@/components/common/WhyChooseUsConverter';
 import { Crop, Zap, Shield } from 'lucide-react';
 
 export default function WebpToJpgPage() {
@@ -73,8 +72,7 @@ export default function WebpToJpgPage() {
         )}
       </div>
 
-      <FeatureSection features={features} />
-      <WhyChooseUs />
+      <WhyChooseUsConverter />
     </div>
   );
 }
