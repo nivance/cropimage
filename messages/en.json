@@ -20,7 +20,15 @@
 		"image_url_hint": "Paste image URL here",
 		"supported_formats": "Supported formats",
 		"whyus": "Why Choose Our Image Cropper",
-		"whyus_converter": "Why Choose Our Image Converter"
+		"whyus_converter": "Why Choose Our Image Converter",
+		"convert_h1": "Convert {source} to {target}",
+		"convert_h1_p": "Quickly convert your {source} images to {target} format. Free online conversion with no software installation required. Maintain quality and convert in seconds.",
+		"convert_upload_text": "Drop your {source} images or press here to upload",
+		"convert_upload_hint": "You can upload multiple images at once",
+		"convert_success": "Successfully Converted",
+		"converting": "Converting",
+		"convert_download_zip": "DOWNLOAD ZIP",
+		"convert_clear_all": "Clear all"
 	},
 	"whyus": {
 		"free_crop": {

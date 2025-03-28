@@ -4,7 +4,6 @@ import { useState } from 'react';
 import ConvertUpload from '@/components/common/ConvertUpload';
 import ImageConverter from '@/components/image-tools/ImageConverter';
 import WhyChooseUsConverter from '@/components/common/WhyChooseUsConverter';
-import { Crop, Zap, Shield } from 'lucide-react';
 
 export default function WebpToJpgPage() {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -24,24 +23,6 @@ export default function WebpToJpgPage() {
     setUploadedFiles([]);
     setShowConverter(false); // 返回上传界面
   };
-
-  const features = [
-    {
-      icon: <Crop className="h-8 w-8 text-blue-500" />,
-      title: "Free Conversion",
-      description: "Convert your WEBP files into corresponding JPG images."
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-blue-500" />,
-      title: "Fast Processing",
-      description: "Efficient online conversion, quickly generating JPG files."
-    },
-    {
-      icon: <Shield className="h-8 w-8 text-blue-500" />,
-      title: "Safe and Reliable",
-      description: "Local processing to protect your privacy."
-    }
-  ];
 
   return (
     <div className="py-10">

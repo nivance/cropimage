@@ -3,6 +3,7 @@
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { CloudUpload } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface ConvertUploadProps {
   onFileSelect: (files: File[] | string[]) => void;
@@ -15,7 +16,7 @@ const ConvertUpload = ({
   onFileSelect,
   acceptedFileTypes = 'image/*',
   maxFileSize = 10485760, // 10MB
-  uploadText = 'Drop your files here'
+  uploadText = 'Drop your images or press here to upload'
 }: ConvertUploadProps) => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
@@ -32,6 +33,9 @@ const ConvertUpload = ({
     multiple: true
   });
 
+  const t = useTranslations('home');
+  const upload_hint = t("convert_upload_hint");
+
   return (
     <div
       {...getRootProps()}
@@ -45,7 +49,7 @@ const ConvertUpload = ({
         <CloudUpload className="h-12 w-12 text-blue-500 mb-4" />
         <p className="text-lg font-medium text-gray-700">{uploadText}</p>
         <p className="text-sm text-gray-500 mt-2">
-          You can upload multiple images at once
+          {upload_hint}
         </p>
       </div>
     </div>
