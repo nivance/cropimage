@@ -10,7 +10,7 @@ export const navigation = {
     { name: 'Crop image square', href: '/crop-image-square' },
   ],
   convertMenu: [
-    { name: 'Convert webp to jpg', href: '/convert-webo-to-jpg' },
+    { name: 'Convert webp to jpg', href: '/convert-webp-to-jpg' },
     { name: 'Convert webp to png', href: '/convert-webp-to-png' },
     { name: 'Convert svg to png', href: '/convert-svg-to-png' },
     { name: 'Convert jpg to webp', href: '/convert-jpg-to-webp' },
