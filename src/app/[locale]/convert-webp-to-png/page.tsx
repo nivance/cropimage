@@ -9,7 +9,7 @@ export async function generateMetadata(context: { params: { locale: string } }):
   const { params } = await context;
   const { locale } = await params;
   return {
-    title: "Convert WebP to PNG",
+    title: "Convert WebP to PNG for free",
     description: "Quickly convert your WEBP images to PNG format. Free online conversion with no software installation required. Maintain quality and convert in seconds.",
     keywords: "Convert WebP to PNG, Image Converter, Convert WebP to PNG Online, WebP to PNG High Quality, Best WebP to PNG Converter",
     icons: [

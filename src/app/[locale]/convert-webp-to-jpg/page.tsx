@@ -9,7 +9,7 @@ export async function generateMetadata(context: { params: { locale: string } }):
   const { params } = await context;
   const { locale } = await params;
   return {
-    title: "Convert WebP to JPG",
+    title: "Convert WebP to JPG for free",
     description: "Quickly convert your WEBP images to JPG format. Free online conversion with no software installation required. Maintain quality and convert in seconds.",
     keywords: "Convert WebP to JPG, Image Converter, Convert WebP to JPG Online, WebP to JPG High Quality, Best WebP to JPG Converter",
     icons: [

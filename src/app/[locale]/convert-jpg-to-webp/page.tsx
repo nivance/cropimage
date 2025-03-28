@@ -9,7 +9,7 @@ export async function generateMetadata(context: { params: { locale: string } }):
   const { params } = await context;
   const { locale } = await params;
   return {
-    title: "Convert JPG to WEBP",
+    title: "Convert JPG to WEBP for free",
     description: "Quickly convert your JPG images to WEBP format. Free online conversion with no software installation required. Maintain quality and convert in seconds.",
     keywords: "Convert JPG to WEBP, Image Converter, Convert JPG to WEBP Online, JPG to WEBP High Quality, Best JPG to WEBP Converter",
     icons: [
