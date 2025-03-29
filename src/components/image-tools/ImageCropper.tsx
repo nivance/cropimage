@@ -6,6 +6,7 @@ import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { loadImage, cropImage, applyCropMask, createImageFromCanvas, downloadImage } from '@/lib/utils/imageUtils';
+import { useTranslations } from 'next-intl';
 
 interface CroppedArea {
   x: number;
@@ -42,6 +43,7 @@ const ImageCropper = ({
   onCancel,
   uploadRef
 }: ImageCropperProps) => {
+  const t = useTranslations('home');
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(initialRotation);
@@ -295,10 +297,10 @@ const ImageCropper = ({
       </div>
 
       <div className="w-full md:w-1/3 p-4 space-y-3 bg-white rounded-md shadow-xl border border-gray-200">
-        <h2 className="text-xl font-bold text-gray-800 text-center">Crop Settings</h2>
+        <h2 className="text-xl font-bold text-gray-800 text-center">{t('crop_settings')}</h2>
         
         <div className="flex items-center space-x-4">
-          <label className="text-sm font-medium text-gray-700 w-20">Zoom</label>
+          <label className="text-sm font-medium text-gray-700 w-20">{t('zoom')}</label>
           <div className="flex-1">
             <Slider
               value={[zoom]}
@@ -311,7 +313,7 @@ const ImageCropper = ({
         </div>
 
         <div className="flex items-center space-x-4">
-          <label className="text-sm font-medium text-gray-700 w-20">Rotation</label>
+          <label className="text-sm font-medium text-gray-700 w-20">{t('rotation')}</label>
           <div className="flex-1">
             <Slider
               value={[rotation]}
@@ -324,7 +326,7 @@ const ImageCropper = ({
         </div>
         
         <div className="space-y-1">
-          <label className="text-sm font-medium text-gray-700">Aspect Ratio</label>
+          <label className="text-sm font-medium text-gray-700">{t('aspect_ratio')}</label>
           <div className="grid grid-cols-3 gap-1">
             {aspectRatios.map((ratio) => (
               <div 
@@ -348,9 +350,9 @@ const ImageCropper = ({
 
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <label className="text-sm font-medium text-gray-700">Output Size</label>
+            <label className="text-sm font-medium text-gray-700">{t('output_size')}</label>
             <span className="text-xs text-gray-500">
-              Original: {originalDimensions.width} × {originalDimensions.height}
+              {t('original')}: {originalDimensions.width} × {originalDimensions.height}
             </span>
           </div>
           <div className="flex items-center space-x-4">
@@ -381,17 +383,17 @@ const ImageCropper = ({
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Crop Shape</label>
+          <label className="text-sm font-medium text-gray-700">{t('crop_shape')}</label>
           <Select
             value={selectedShape}
             onValueChange={handleShapeChange}
           >
             <SelectTrigger>
-              <SelectValue placeholder="Select Shape" />
+              <SelectValue placeholder={t('select_shape')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="rect">Rectangle</SelectItem>
-              <SelectItem value="circle">Circle</SelectItem>
+              <SelectItem value="rect">{t('rectangle')}</SelectItem>
+              <SelectItem value="circle">{t('circle')}</SelectItem>
               {/* <SelectItem value="heart">Heart</SelectItem>
               <SelectItem value="square">Square</SelectItem>
               <SelectItem value="polygon">Hexagon</SelectItem> */}
@@ -400,13 +402,13 @@ const ImageCropper = ({
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Output Format</label>
+          <label className="text-sm font-medium text-gray-700">{t('output_format')}</label>
           <Select
             value={selectedFormat}
             onValueChange={(value: OutputFormat) => setSelectedFormat(value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="Select Format" />
+              <SelectValue placeholder={t('select_format')} />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="jpeg">JPEG</SelectItem>
@@ -422,13 +424,13 @@ const ImageCropper = ({
               variant="outline"
               onClick={handleCancel}
             >
-              Cancel
+              {t('cancel')}
             </Button>
             <Button
               variant="outline"
               onClick={handleReset}
             >
-              Reset
+              {t('reset')}
             </Button>
           </div>
           <Button
@@ -436,7 +438,7 @@ const ImageCropper = ({
             disabled={loading}
             className="bg-blue-500 hover:bg-blue-600"
           >
-            {loading ? 'Processing...' : 'Crop Image'}
+            {loading ? t('processing') : t('crop_image')}
           </Button>
         </div>
       </div>
