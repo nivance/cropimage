@@ -19,7 +19,7 @@ export async function generateMetadata(context: { params: { locale: string } }):
       },
     ],
     alternates: {
-      canonical: `${config.baseUrl}/${locale !== "en" ? locale + "/" : ""}convert-SVG-to-PNG`,
+      canonical: `${config.baseUrl}/${locale !== "en" ? locale + "/" : ""}convert-svg-to-png`,
     }
   };
 }

@@ -19,7 +19,7 @@ export async function generateMetadata(context: { params: { locale: string } }):
       },
     ],
     alternates: {
-      canonical: `${config.baseUrl}/${locale !== "en" ? locale + "/" : ""}convert-JPG-to-WEBP`,
+      canonical: `${config.baseUrl}/${locale !== "en" ? locale + "/" : ""}convert-jpg-to-webp`,
     }
   };
 }
