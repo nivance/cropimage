@@ -6,8 +6,8 @@
 	},
 	"nav": {
 		"home": "Home",
-		"convert": "Convert image",
-		"crop": "Crop shapes"
+		"convert": "Convert Image",
+		"batch_crop": "Batch Crop"
 	},
 	"home": {
 		"h1": "Free Online Image Cropping Tool",
@@ -16,7 +16,19 @@
 		"local_file": "Local file",
 		"image_url": "Image URL",
 		"choose_image": "Choose Image",
+		"batch_h1": "Fast & Free Batch Image Cropping Tool",
+		"batch_h1_p": "Easily crop multiple images at once with our fast and free online batch cropping tool. Upload, adjust, and download your cropped images in seconds. No software required!",
+		"batch_upload_text": "Drop your images here",
+		"batch_image_url": "Image URLs",
+		"add_more_urls": "Add More URLs",
+		"batch_choose_image": "Choose Images",
 		"load": "Load",
+		"cancel": "Cancel",
+		"reset": "Reset",
+		"crop": "Crop Image",
+		"selected_images": "Selected Images",
+		"upload_hint": "You can upload multiple images at once",
+		"batch_image_url_hint": "Paste image URLs here",
 		"image_url_hint": "Paste image URL here",
 		"supported_formats": "Supported formats",
 		"whyus": "Why Choose Our Image Cropper",
