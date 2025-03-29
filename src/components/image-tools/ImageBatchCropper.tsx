@@ -580,8 +580,8 @@ const ImageBatchCropper = ({
                 {t('original')}: {originalDimensions.width} × {originalDimensions.height}
               </span>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
+            <div className="flex items-center justify-end space-x-2">
+              <div className="flex items-center space-x-1">
                 <label className="text-sm text-gray-600">W:</label>
                 <input
                   type="number"
@@ -592,7 +592,8 @@ const ImageBatchCropper = ({
                   min="1"
                 />
               </div>
-              <div className="flex items-center space-x-2">
+              <span className="text-sm text-gray-500">px</span>
+              <div className="flex items-center space-x-1">
                 <label className="text-sm text-gray-600">H:</label>
                 <input
                   type="number"
@@ -607,7 +608,7 @@ const ImageBatchCropper = ({
             </div>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700 whitespace-nowrap">{t('crop_shape')}</label>
             <Select
               value={selectedShape}
@@ -623,7 +624,7 @@ const ImageBatchCropper = ({
             </Select>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700 whitespace-nowrap">{t('output_format')}</label>
             <Select
               value={selectedFormat}
