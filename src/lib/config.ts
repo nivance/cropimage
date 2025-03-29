@@ -11,6 +11,7 @@ export const navigation = {
   ],
   convertMenu: [
     { name: 'Convert webp to jpg', href: '/convert-webp-to-jpg' },
+    { name: 'Convert heic to jpg', href: '/convert-heic-to-jpg' },
     { name: 'Convert webp to png', href: '/convert-webp-to-png' },
     { name: 'Convert svg to png', href: '/convert-svg-to-png' },
     { name: 'Convert jpg to webp', href: '/convert-jpg-to-webp' },

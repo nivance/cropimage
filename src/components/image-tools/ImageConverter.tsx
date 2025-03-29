@@ -5,6 +5,7 @@ import { Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import JSZip from 'jszip';
 import { useTranslations } from 'next-intl';
+import heic2any from 'heic2any'; // 需要安装这个库
 
 // 转换结果类型
 export interface ConversionResult {
@@ -31,6 +32,7 @@ const ImageConverter = ({
   const [results, setResults] = useState<ConversionResult[]>([]);
   const [isConverting, setIsConverting] = useState(false);
   const [selectedFormat, setSelectedFormat] = useState(targetFormat);
+  const [errors, setErrors] = useState<{fileName: string, error: string}[]>([]);
 
   // 组件加载时自动开始转换
   useEffect(() => {
@@ -39,38 +41,89 @@ const ImageConverter = ({
     }
   }, [files]);
 
+  // 检查文件类型是否为HEIC
+  const isHeicFile = (file: File): boolean => {
+    return file.type === 'image/heic' || 
+           file.type === 'image/heif' || 
+           file.name.toLowerCase().endsWith('.heic') || 
+           file.name.toLowerCase().endsWith('.heif');
+  };
+
+  // 转换HEIC文件为普通图片格式
+  const convertHeicFile = async (file: File): Promise<File> => {
+    try {
+      // 使用heic2any库将HEIC转换为BLOB
+      const conversionResult = await heic2any({
+        blob: file,
+        toType: 'image/jpeg',
+        quality: 0.9
+      });
+      
+      // 创建一个新的File对象
+      const blob = conversionResult instanceof Blob ? conversionResult : conversionResult[0];
+      const newFileName = file.name.replace(/\.(heic|heif)$/i, '.jpg');
+      
+      return new File([blob], newFileName, { type: 'image/jpeg' });
+    } catch (error) {
+      console.error('HEIC conversion error:', error);
+      throw new Error(`Failed to convert HEIC file: ${file.name}`);
+    }
+  };
+
   // 文件转换处理函数
   const convertFiles = async () => {
     setIsConverting(true);
-
+    setErrors([]);
+    
     const newResults: ConversionResult[] = [];
-
+    const newErrors: {fileName: string, error: string}[] = [];
+    
     for (const file of files) {
       const startTime = performance.now();
-
+      
       try {
+        // 处理HEIC格式
+        let processedFile = file;
+        if (isHeicFile(file)) {
+          try {
+            processedFile = await convertHeicFile(file);
+          } catch (heicError) {
+            console.error("HEIC conversion error:", heicError);
+            newErrors.push({
+              fileName: file.name,
+              error: 'HEIC format conversion failed. Please try a different file.'
+            });
+            continue; // 跳过当前文件
+          }
+        }
+        
         // 创建一个临时URL来显示图像
-        const url = URL.createObjectURL(file);
-
+        const url = URL.createObjectURL(processedFile);
+        
         // 创建结果对象
         const result: ConversionResult = {
           id: Math.random().toString(36).substring(2, 9),
-          originalFile: file,
+          originalFile: processedFile,
           convertedUrl: url,
-          fileName: file.name.replace(/\.[^/.]+$/, '') + '.' + targetFormat.toLowerCase(),
+          fileName: processedFile.name.replace(/\.[^/.]+$/, '') + '.' + targetFormat.toLowerCase(),
           conversionTime: parseFloat(((performance.now() - startTime) / 1000).toFixed(3))
         };
-
+        
         newResults.push(result);
       } catch (error) {
         console.error("Error converting file:", file.name, error);
+        newErrors.push({
+          fileName: file.name,
+          error: 'Error processing file. Please try a different file.'
+        });
       }
     }
-
+    
     // 直接替换结果，而不是添加到现有结果
     setResults(newResults);
+    setErrors(newErrors);
     setIsConverting(false);
-
+    
     if (onConversionComplete) {
       onConversionComplete();
     }
@@ -156,6 +209,20 @@ const ImageConverter = ({
           </Button>
         </div>
       </div>
+
+      {/* 显示错误消息 */}
+      {errors.length > 0 && (
+        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+          <h3 className="text-sm font-medium text-red-800 mb-1">
+            Failed to convert some files:
+          </h3>
+          <ul className="text-xs text-red-700 list-disc list-inside">
+            {errors.map((error, index) => (
+              <li key={index}>{error.fileName}: {error.error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* 转换中显示加载状态 */}
       {isConverting && (
