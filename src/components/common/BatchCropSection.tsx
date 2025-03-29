@@ -2,23 +2,16 @@
 
 import { useState, useRef } from 'react';
 import FileBatchUpload from '@/components/common/FileBatchUpload';
-import ImageBatchCropper from '@/components/image-tools/ImageBatchCropper';
+import ImageBatchCropper, { ImageItem } from '@/components/image-tools/ImageBatchCropper';
 import { config } from '@/lib/config';
 import { createObjectURL } from '@/lib/utils/imageUtils';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 
-// 定义图片项类型
-interface ImageItem {
-  id: string;
-  file: File | null;
-  url: string;
-  isSelected: boolean;
-}
-
 export default function BatchCropSection() {
     const [images, setImages] = useState<ImageItem[]>([]);
     const [selectedImageIndex, setSelectedImageIndex] = useState<number>(-1);
+    const [showCropper, setShowCropper] = useState(false);
     const uploadRef = useRef<HTMLDivElement>(null);
 
     // 处理文件选择（可以是多个文件或URL）
@@ -33,8 +26,7 @@ export default function BatchCropSection() {
                 newImages.push({
                     id: `url-${Date.now()}-${index}`,
                     file: null,
-                    url: url,
-                    isSelected: index === 0 // 第一个默认选中
+                    url: url
                 });
             });
         } else {
@@ -43,16 +35,17 @@ export default function BatchCropSection() {
                 newImages.push({
                     id: `file-${Date.now()}-${index}`,
                     file: file,
-                    url: createObjectURL(file),
-                    isSelected: index === 0 // 第一个默认选中
+                    url: createObjectURL(file)
                 });
             });
         }
 
         setImages(newImages);
-        setSelectedImageIndex(0); // 选中第一张图片
+        setSelectedImageIndex(0);
+        setShowCropper(true);
     };
 
+    // 取消裁剪，返回上传界面
     const handleCropCancel = () => {
         // 清除所有Object URL以防内存泄漏
         images.forEach(img => {
@@ -60,39 +53,58 @@ export default function BatchCropSection() {
         });
         setImages([]);
         setSelectedImageIndex(-1);
+        setShowCropper(false);
     };
 
-    // 选择图片进行裁剪
-    const handleSelectImage = (index: number) => {
-        setSelectedImageIndex(index);
-    };
-
-    // 删除单张图片
+    // 处理图片删除
     const handleDeleteImage = (index: number) => {
         const newImages = [...images];
         // 释放URL
         if (newImages[index].file) URL.revokeObjectURL(newImages[index].url);
         newImages.splice(index, 1);
-        setImages(newImages);
         
-        // 调整选中的图片
-        if (selectedImageIndex === index) {
-            setSelectedImageIndex(newImages.length > 0 ? 0 : -1);
-        } else if (selectedImageIndex > index) {
-            setSelectedImageIndex(selectedImageIndex - 1);
+        if (newImages.length === 0) {
+            // 如果删除后没有图片了，返回上传界面
+            setImages([]);
+            setSelectedImageIndex(-1);
+            setShowCropper(false);
+        } else {
+            setImages(newImages);
+            
+            // 调整选中的图片
+            if (selectedImageIndex === index) {
+                setSelectedImageIndex(newImages.length > 0 ? 0 : -1);
+            } else if (selectedImageIndex > index) {
+                setSelectedImageIndex(selectedImageIndex - 1);
+            }
         }
     };
 
+    // 选择图片
+    const handleSelectImage = (index: number) => {
+        setSelectedImageIndex(index);
+    };
+
+    // 更新图片设置
+    const handleUpdateImageSettings = (index: number, settings: any) => {
+        const newImages = [...images];
+        newImages[index] = {
+            ...newImages[index],
+            settings: settings
+        };
+        setImages(newImages);
+    };
+
     // 处理裁剪完成
-    const handleCropComplete = (croppedImageUrl: string) => {
-        // 可以实现替换裁剪后的图片或其他逻辑
-        console.log("Crop completed:", croppedImageUrl);
+    const handleCropComplete = (croppedImages: string[]) => {
+        console.log("All images cropped:", croppedImages.length);
+        // 这里可以添加后续处理逻辑，例如上传到服务器等
     };
 
     const t = useTranslations('home');
 
     return (
-        <div className="container mx-auto px-4">
+        <div className="mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
                     {t('batch_h1')}
@@ -102,7 +114,7 @@ export default function BatchCropSection() {
                 </p>
             </div>
 
-            {images.length === 0 ? (
+            {!showCropper ? (
                 <div id="upload-section" className="mb-8">
                     <FileBatchUpload
                         onFileSelect={handleFileSelect}
@@ -112,59 +124,16 @@ export default function BatchCropSection() {
                     />
                 </div>
             ) : (
-                <div className="space-y-6">
-                    {/* 缩略图预览区域 */}
-                    <div className="bg-white p-4 rounded-md shadow-sm">
-                        <div className="flex justify-between items-center mb-3">
-                            <h3 className="text-lg font-semibold">{t('selected_images')}</h3>
-                            <Button 
-                                variant="outline"
-                                onClick={handleCropCancel}
-                                className="text-sm"
-                            >
-                                {t('cancel')}
-                            </Button>
-                        </div>
-                        
-                        <div className="flex flex-wrap gap-3">
-                            {images.map((image, index) => (
-                                <div 
-                                    key={image.id}
-                                    className={`relative w-20 h-20 border-2 rounded overflow-hidden cursor-pointer
-                                        ${selectedImageIndex === index ? 'border-blue-500' : 'border-gray-200'}`}
-                                    onClick={() => handleSelectImage(index)}
-                                >
-                                    <img 
-                                        src={image.url} 
-                                        alt={`Image ${index + 1}`}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <button
-                                        className="absolute top-0 right-0 bg-red-500 text-white w-5 h-5 flex items-center justify-center rounded-bl"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleDeleteImage(index);
-                                        }}
-                                    >
-                                        ×
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    
-                    {/* 裁剪器 */}
-                    {selectedImageIndex >= 0 && (
-                        <div id="cropper-section">
-                            <ImageBatchCropper
-                                imageSrc={images[selectedImageIndex].url}
-                                onCancel={handleCropCancel}
-                                onCropComplete={handleCropComplete}
-                                uploadRef={uploadRef}
-                            />
-                        </div>
-                    )}
-                </div>
+                <ImageBatchCropper
+                    images={images}
+                    initialSelectedIndex={selectedImageIndex}
+                    onCancel={handleCropCancel}
+                    onDeleteImage={handleDeleteImage}
+                    onSelectImage={handleSelectImage}
+                    onUpdateImageSettings={handleUpdateImageSettings}
+                    onCropComplete={handleCropComplete}
+                    uploadRef={uploadRef}
+                />
             )}
         </div>
     );
