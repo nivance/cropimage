@@ -5,10 +5,6 @@ export const navigation = {
     { name: 'Terms of Service', href: '/termsofservice' },
     { name: 'Privacy Policy', href: '/privacy' },
   ],
-  cropImageMeun: [
-    { name: 'Crop image circle', href: '/crop-image-circle' },
-    { name: 'Crop image square', href: '/crop-image-square' },
-  ],
   convertMenu: [
     { name: 'Convert webp to jpg', href: '/convert-webp-to-jpg' },
     { name: 'Convert heic to jpg', href: '/convert-heic-to-jpg' },
