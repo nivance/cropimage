@@ -421,10 +421,10 @@ const ImageBatchCropper = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-5xl space-y-2">
       {/* 缩略图预览区域 */}
       <div ref={cropperRef} className="bg-white rounded-full">
-        <div className="flex justify-between items-center mb-3">
+        <div className="flex justify-between items-center">
           <h3 className="text-lg font-semibold">{t('selected_images')}</h3>
           <Button 
             variant="outline"
@@ -456,7 +456,7 @@ const ImageBatchCropper = ({
               {images.map((image, index) => (
                 <div 
                   key={image.id}
-                  className={`relative flex-shrink-0 w-20 h-20 border-2 rounded overflow-hidden cursor-pointer
+                  className={`relative flex-shrink-0 w-16 h-16 border-2 rounded overflow-hidden cursor-pointer
                     ${selectedImageIndex === index ? 'border-blue-500' : 'border-gray-200'}
                     ${image.settings ? 'ring-2 ring-green-400 ring-opacity-50' : ''}`}
                   onClick={() => handleSelectImage(index)}
@@ -502,7 +502,7 @@ const ImageBatchCropper = ({
       {/* 裁剪区域 */}
       <div className="flex flex-col md:flex-row w-full gap-6">
         <div 
-          className="relative w-full md:w-2/3 h-[600px] bg-gray-100 rounded-md overflow-hidden"
+          className="relative w-full md:w-2/3 h-[480px] bg-gray-100 rounded-md overflow-hidden"
         >
           {images.length > 0 && selectedImageIndex >= 0 && (
             <Cropper
@@ -521,7 +521,7 @@ const ImageBatchCropper = ({
           )}
         </div>
 
-        <div className="w-full md:w-1/3 p-4 space-y-3 bg-white rounded-md shadow-xl border border-gray-200">
+        <div className="w-full md:w-1/3 p-2 space-y-2 bg-white rounded-md shadow-xl border border-gray-200">
           <h2 className="text-xl font-bold text-gray-800 text-center">{t('crop_settings')}</h2>
           
           <div className="flex items-center space-x-4">
@@ -607,8 +607,8 @@ const ImageBatchCropper = ({
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">{t('crop_shape')}</label>
+          <div className="flex items-center space-x-2">
+            <label className="text-sm font-medium text-gray-700 whitespace-nowrap">{t('crop_shape')}</label>
             <Select
               value={selectedShape}
               onValueChange={handleShapeChange}
@@ -623,8 +623,8 @@ const ImageBatchCropper = ({
             </Select>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">{t('output_format')}</label>
+          <div className="flex items-center space-x-2">
+            <label className="text-sm font-medium text-gray-700 whitespace-nowrap">{t('output_format')}</label>
             <Select
               value={selectedFormat}
               onValueChange={(value: OutputFormat) => setSelectedFormat(value)}
