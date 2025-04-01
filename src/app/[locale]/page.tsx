@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div className="min-h-screen py-10">
       <CropSection />
-      <HowToUse />
+      <HowToUse area='howToUse'/>
       <WhyChooseUs />
       <FAQs />
     </div>

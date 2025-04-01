@@ -1,10 +1,10 @@
 "use client";
 import { useTranslations } from 'next-intl';
 
-export default function HowToUse() {
-    const t = useTranslations('howToUse');
+export default function HowToUse({ area } : { area: string }) {
+    const t = useTranslations(area);
     return (
-        <section className="mx-auto max-w-[80%]">
+        <section className="mx-auto max-w-5xl">
             <div className="flex flex-col items-center justify-center px-5 py-8">
                 <p className="font-inter mb-2 text-center text-sm font-medium"> {t('p')} </p>
                 <h2 className="text-center text-3xl font-bold lg:text-4xl"> {t('h2')} </h2>
