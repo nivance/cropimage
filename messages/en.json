@@ -1,8 +1,8 @@
 {
 	"metadata": {
 		"title": "Crop Image - Online for Free, Instantly, No Watermarks",
-  		"description": "Crop image online for free with our easy-to-use tool. No downloads, no registration, no watermarks—just fast and unlimited image cropping. Supports JPG, PNG, WEBP, WEBP and more!",
-  		"keywords": "crop image, resize image, crop photo, cut image, crop picture, free online image cropper, online photo crop, image cropping tool, image cropper, unlimited image crop"
+		"description": "Crop image online for free with our easy-to-use tool. No downloads, no registration, no watermarks—just fast and unlimited image cropping. Supports JPG, PNG, WEBP, WEBP and more!",
+		"keywords": "crop image, resize image, crop photo, cut image, crop picture, free online image cropper, online photo crop, image cropping tool, image cropper, unlimited image crop"
 	},
 	"nav": {
 		"home": "Home",
@@ -106,7 +106,7 @@
 		},
 		"supported_multiple": {
 			"title": "Support multiple images",
-			"description": "Supporting multiple image conversions at once, making it very convenient."  
+			"description": "Supporting multiple image conversions at once, making it very convenient."
 		},
 		"privacy_protected": {
 			"title": "Privacy Protected",
@@ -231,6 +231,52 @@
 		"q20": {
 			"q": "Is this crop image tool completely ad-free?",
 			"a": "No, but you can ignore any advertisements that may appear on the website."
+		}
+	},
+	"batch_faqInfo": {
+		"title": "Frequently Asked Questions",
+		"desc": "Here are some of the most frequently asked questions about Batch Crop Images. If you have a question about Batch Crop Images that is not answered here, please feel free to reach out to us via the contact form on this website."
+	},
+	"batch_faqs": {
+		"q1": {
+			"q": "What is a batch image cropping tool?",
+			"a": "A batch image cropping tool allows you to crop multiple images at once, saving time and effort compared to manually cropping each image individually."
+		},
+		"q2": {
+			"q": "How can I crop multiple images at once?",
+			"a": "Simply upload your images to our batch cropping tool, select the desired crop settings, and download the cropped images in one click."
+		},
+		"q3": {
+			"q": "Is your batch image cropper free to use?",
+			"a": "Yes! Our online batch image cropping tool is completely free to use with no hidden fees or limitations."
+		},
+		"q4": {
+			"q": "Do I need to install any software to use this tool?",
+			"a": "No, our batch cropping tool is web-based, so you can use it directly from your browser without any downloads or installations."
+		},
+		"q5": {
+			"q": "What image formats are supported for batch cropping?",
+			"a": "Our tool supports popular image formats such as JPG, PNG, GIF, and WebP."
+		},
+		"q6": {
+			"q": "Is there a limit on the number of images I can crop at once?",
+			"a": "There may be a limit depending on your browser and device capabilities, but our tool is designed to handle a large number of images efficiently."
+		},
+		"q7": {
+			"q": "Can I set custom crop dimensions for all images?",
+			"a": "Yes, you can specify custom crop dimensions or use predefined aspect ratios for quick and consistent cropping."
+		},
+		"q8": {
+			"q": "Will my images lose quality after cropping?",
+			"a": "Our tool ensures minimal quality loss when cropping images, and you can choose output settings to maintain high resolution."
+		},
+		"q9": {
+			"q": "Is my data safe when using this online cropper?",
+			"a": "Yes, we prioritize your privacy. All images are processed securely and are not stored on our servers after cropping."
+		},
+		"q10": {
+			"q": "Can I crop images on mobile devices?",
+			"a": "Yes, our batch image cropping tool is mobile-friendly and works seamlessly on smartphones and tablets."
 		}
 	}
 }
