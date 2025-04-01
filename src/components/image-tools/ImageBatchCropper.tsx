@@ -211,14 +211,65 @@ const ImageBatchCropper = ({
 
   const onCropChange = (crop: { x: number, y: number }) => {
     setCrop(crop);
+    // 自动保存当前设置
+    if (selectedImageIndex >= 0 && croppedAreaPixels) {
+      const settings: CropSettings = {
+        crop,
+        zoom,
+        rotation,
+        aspectRatio: selectedAspectRatio,
+        shape: selectedShape,
+        format: selectedFormat,
+        dimensions,
+        croppedAreaPixels
+      };
+      
+      if (onUpdateImageSettings) {
+        onUpdateImageSettings(selectedImageIndex, settings);
+      }
+    }
   };
 
   const onZoomChange = (zoom: number) => {
     setZoom(zoom);
+    // 自动保存当前设置
+    if (selectedImageIndex >= 0 && croppedAreaPixels) {
+      const settings: CropSettings = {
+        crop,
+        zoom,
+        rotation,
+        aspectRatio: selectedAspectRatio,
+        shape: selectedShape,
+        format: selectedFormat,
+        dimensions,
+        croppedAreaPixels
+      };
+      
+      if (onUpdateImageSettings) {
+        onUpdateImageSettings(selectedImageIndex, settings);
+      }
+    }
   };
 
   const onRotationChange = (rotation: number) => {
     setRotation(rotation);
+    // 自动保存当前设置
+    if (selectedImageIndex >= 0 && croppedAreaPixels) {
+      const settings: CropSettings = {
+        crop,
+        zoom: zoom,
+        rotation,
+        aspectRatio: selectedAspectRatio,
+        shape: selectedShape,
+        format: selectedFormat,
+        dimensions,
+        croppedAreaPixels
+      };
+      
+      if (onUpdateImageSettings) {
+        onUpdateImageSettings(selectedImageIndex, settings);
+      }
+    }
   };
 
   const onCropAreaComplete = (croppedArea: CroppedArea, croppedAreaPixels: CroppedArea) => {
@@ -453,14 +504,66 @@ const ImageBatchCropper = ({
       height: newHeight
     }));
     
-    setDimensions({
+    const newDimensions = {
       width: currentWidth,
       height: newHeight
+    };
+    
+    setDimensions(newDimensions);
+    
+    // 自动保存当前设置
+    if (selectedImageIndex >= 0 && croppedAreaPixels) {
+      const settings: CropSettings = {
+        crop,
+        zoom,
+        rotation,
+        aspectRatio: ratio,
+        shape: selectedShape,
+        format: selectedFormat,
+        dimensions: newDimensions,
+        croppedAreaPixels
+      };
+      
+      if (onUpdateImageSettings) {
+        onUpdateImageSettings(selectedImageIndex, settings);
+      }
+    }
+    
+    // 通知用户设置已保存
+    toast({
+      title: t('info'),
+      description: t('aspect_ratio_updated'),
+      variant: "default",
     });
   };
 
   const handleShapeChange = (value: CropShape) => {
     setSelectedShape(value);
+    
+    // 自动保存当前设置
+    if (selectedImageIndex >= 0 && croppedAreaPixels) {
+      const settings: CropSettings = {
+        crop,
+        zoom,
+        rotation,
+        aspectRatio: selectedAspectRatio,
+        shape: value,
+        format: selectedFormat,
+        dimensions,
+        croppedAreaPixels
+      };
+      
+      if (onUpdateImageSettings) {
+        onUpdateImageSettings(selectedImageIndex, settings);
+      }
+    }
+    
+    // 通知用户设置已保存
+    toast({
+      title: t('info'),
+      description: t('shape_updated'),
+      variant: "default",
+    });
   };
 
   const handleDimensionChange = (type: 'width' | 'height', value: string) => {
@@ -471,30 +574,81 @@ const ImageBatchCropper = ({
       ...dimensions,
       [type]: numValue
     };
-    setDimensions(newDimensions);
     
     // 根据宽高比更新另一个维度
     if (selectedAspectRatio && numValue > 0) {
       if (type === 'width') {
         const newHeight = Math.round(numValue / selectedAspectRatio);
-        setDimensions(prev => ({ ...prev, height: newHeight }));
+        newDimensions.height = newHeight;
         setPreviewDimensions({ width: numValue, height: newHeight });
       } else {
         const newWidth = Math.round(numValue * selectedAspectRatio);
-        setDimensions(prev => ({ ...prev, width: newWidth }));
+        newDimensions.width = newWidth;
         setPreviewDimensions({ width: newWidth, height: numValue });
       }
     }
+    
+    setDimensions(newDimensions);
+    
+    // 防止频繁更新，使用节流
+    // 创建一个延迟保存的功能
+    const debouncedSave = setTimeout(() => {
+      // 自动保存当前设置
+      if (selectedImageIndex >= 0 && croppedAreaPixels) {
+        const settings: CropSettings = {
+          crop,
+          zoom,
+          rotation,
+          aspectRatio: selectedAspectRatio,
+          shape: selectedShape,
+          format: selectedFormat,
+          dimensions: newDimensions,
+          croppedAreaPixels
+        };
+        
+        if (onUpdateImageSettings) {
+          onUpdateImageSettings(selectedImageIndex, settings);
+        }
+        
+        // 通知用户设置已保存
+        toast({
+          title: t('info'),
+          description: t('size_updated'),
+          variant: "default",
+        });
+      }
+    }, 500); // 500ms 延迟保存
+    
+    return () => clearTimeout(debouncedSave);
   };
 
-  // 修改 Set 按钮的点击处理函数
-  const handleSaveSettings = () => {
-    saveCurrentImageSettings();
-    // 添加用户反馈
+  // 修改格式选择函数，在每次格式改变时自动保存
+  const handleFormatChange = (value: OutputFormat) => {
+    setSelectedFormat(value);
+    
+    // 自动保存当前设置
+    if (selectedImageIndex >= 0 && croppedAreaPixels) {
+      const settings: CropSettings = {
+        crop,
+        zoom,
+        rotation,
+        aspectRatio: selectedAspectRatio,
+        shape: selectedShape,
+        format: value,
+        dimensions,
+        croppedAreaPixels
+      };
+      
+      if (onUpdateImageSettings) {
+        onUpdateImageSettings(selectedImageIndex, settings);
+      }
+    }
+    
+    // 通知用户设置已保存
     toast({
-      title: t('success'),
-      description: t('settings_saved'),
-      variant: "success",
+      title: t('info'),
+      description: t('format_updated'),
+      variant: "default",
     });
   };
 
@@ -726,7 +880,7 @@ const ImageBatchCropper = ({
             <label className="text-sm font-medium text-gray-700 whitespace-nowrap">{t('output_format')}</label>
             <Select
               value={selectedFormat}
-              onValueChange={(value: OutputFormat) => setSelectedFormat(value)}
+              onValueChange={handleFormatChange}
             >
               <SelectTrigger>
                 <SelectValue placeholder={t('select_format')} />
@@ -740,13 +894,7 @@ const ImageBatchCropper = ({
           </div>
 
           <div className="flex justify-between">
-            <div className="space-x-2">
-              <Button
-                variant="outline"
-                onClick={handleSaveSettings}
-              >
-                {t('set')}
-              </Button>
+            <div>
               <Button
                 variant="outline"
                 onClick={handleReset}
