@@ -9,6 +9,7 @@ import { loadImage, cropImage, applyCropMask, createImageFromCanvas, downloadIma
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/uis/dialog';
 import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 
 interface CroppedArea {
   x: number;
@@ -34,6 +35,7 @@ interface CropSettings {
   shape: CropShape;
   format: OutputFormat;
   dimensions: { width: number, height: number };
+  croppedAreaPixels?: CroppedArea;
 }
 
 interface ImageBatchCropperProps {
@@ -78,6 +80,7 @@ const ImageBatchCropper = ({
   const cropperRef = useRef<HTMLDivElement>(null);
   const thumbnailsContainerRef = useRef<HTMLDivElement>(null);
   
+  const { toast } = useToast();
   const t = useTranslations('home');
 
   // 重置裁剪设置函数
@@ -167,7 +170,7 @@ const ImageBatchCropper = ({
 
   // 保存当前图片的设置
   const saveCurrentImageSettings = () => {
-    if (selectedImageIndex < 0 || !croppedAreaPixels) return;
+    if (selectedImageIndex < 0) return;
     
     const settings: CropSettings = {
       crop,
@@ -176,7 +179,8 @@ const ImageBatchCropper = ({
       aspectRatio: selectedAspectRatio,
       shape: selectedShape,
       format: selectedFormat,
-      dimensions
+      dimensions,
+      croppedAreaPixels: croppedAreaPixels || undefined
     };
     
     if (onUpdateImageSettings) {
@@ -221,6 +225,25 @@ const ImageBatchCropper = ({
 
   const onCropAreaComplete = (croppedArea: CroppedArea, croppedAreaPixels: CroppedArea) => {
     setCroppedAreaPixels(croppedAreaPixels);
+    
+    // 每次裁剪区域完成后，自动保存当前设置
+    // 这确保我们总是有最新的裁剪区域像素数据
+    if (selectedImageIndex >= 0) {
+      const settings: CropSettings = {
+        crop,
+        zoom,
+        rotation,
+        aspectRatio: selectedAspectRatio,
+        shape: selectedShape,
+        format: selectedFormat,
+        dimensions,
+        croppedAreaPixels
+      };
+      
+      if (onUpdateImageSettings) {
+        onUpdateImageSettings(selectedImageIndex, settings);
+      }
+    }
   };
 
   const getMimeType = (format: string): string => {
@@ -236,7 +259,77 @@ const ImageBatchCropper = ({
     }
   };
 
-  // 批量裁剪所有图片
+  // 添加这些辅助函数到组件外部
+  const createImage = (url: string): Promise<HTMLImageElement> =>
+    new Promise((resolve, reject) => {
+      const image = new Image();
+      image.addEventListener('load', () => resolve(image));
+      image.addEventListener('error', (error) => reject(error));
+      image.src = url;
+    });
+
+  const getRadianAngle = (degreeValue: number): number => {
+    return (degreeValue * Math.PI) / 180;
+  };
+
+  const rotateSize = (width: number, height: number, rotation: number) => {
+    const rotRad = getRadianAngle(rotation);
+    return {
+      width: Math.abs(Math.cos(rotRad) * width) + Math.abs(Math.sin(rotRad) * height),
+      height: Math.abs(Math.sin(rotRad) * width) + Math.abs(Math.cos(rotRad) * height),
+    };
+  };
+
+  // 这个是根据react-easy-crop官方推荐的裁剪方法
+  const getCroppedImg = async (
+    imageSrc: string,
+    pixelCrop: CroppedArea,
+    rotation = 0,
+    flip = { horizontal: false, vertical: false }
+  ): Promise<HTMLCanvasElement> => {
+    const image = await createImage(imageSrc);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    if (!ctx) {
+      throw new Error('Canvas context is not available');
+    }
+
+    // 计算旋转后的尺寸
+    const rotated = rotateSize(image.width, image.height, rotation);
+
+    // 设置画布尺寸为旋转后的尺寸
+    canvas.width = rotated.width;
+    canvas.height = rotated.height;
+
+    // 在画布中心进行旋转
+    ctx.translate(rotated.width / 2, rotated.height / 2);
+    ctx.rotate(getRadianAngle(rotation));
+    ctx.scale(flip.horizontal ? -1 : 1, flip.vertical ? -1 : 1);
+    ctx.translate(-image.width / 2, -image.height / 2);
+
+    // 绘制原始图像
+    ctx.drawImage(image, 0, 0);
+
+    // 提取裁剪区域
+    const data = ctx.getImageData(
+      pixelCrop.x,
+      pixelCrop.y,
+      pixelCrop.width,
+      pixelCrop.height
+    );
+
+    // 设置画布尺寸为裁剪后的尺寸
+    canvas.width = pixelCrop.width;
+    canvas.height = pixelCrop.height;
+
+    // 将裁剪后的图像数据放回画布
+    ctx.putImageData(data, 0, 0);
+
+    return canvas;
+  };
+
+  // 然后修改 batchCropAllImages 函数
   const batchCropAllImages = async () => {
     try {
       setLoading(true);
@@ -248,30 +341,24 @@ const ImageBatchCropper = ({
       
       for (let i = 0; i < images.length; i++) {
         const image = images[i];
-        if (!image.settings) continue;
+        if (!image.settings || !image.settings.croppedAreaPixels) continue;
         
-        const img = await loadImage(image.url);
-        
-        // 使用保存的设置裁剪图片
         const settings = image.settings;
         
-        // 裁剪区域
-        const cropAreaPixels = await getCropAreaPixels(img, settings);
-        
-        // 创建裁剪的画布
-        const croppedCanvas = cropImage(
-          img,
-          cropAreaPixels,
-          { horizontal: false, vertical: false },
-          settings.rotation
+        // 使用官方推荐的方法裁剪图像
+        const croppedCanvas = await getCroppedImg(
+          image.url,
+          settings.croppedAreaPixels,
+          settings.rotation,
+          { horizontal: false, vertical: false }
         );
-
-        // 应用蒙版（如果需要）
+        
+        // 应用形状蒙版（如果需要）
         let finalCanvas = croppedCanvas;
         if (settings.shape !== 'rect') {
           finalCanvas = applyCropMask(croppedCanvas, settings.shape);
         }
-
+        
         // 调整尺寸
         if (settings.dimensions.width > 0 && settings.dimensions.height > 0) {
           const resizedCanvas = document.createElement('canvas');
@@ -279,11 +366,12 @@ const ImageBatchCropper = ({
           resizedCanvas.height = settings.dimensions.height;
           const ctx = resizedCanvas.getContext('2d');
           if (ctx) {
+            ctx.imageSmoothingQuality = 'high';
             ctx.drawImage(finalCanvas, 0, 0, settings.dimensions.width, settings.dimensions.height);
             finalCanvas = resizedCanvas;
           }
         }
-
+        
         // 获取数据URL
         const mimeType = getMimeType(settings.format);
         const dataURL = createImageFromCanvas(finalCanvas, mimeType);
@@ -295,32 +383,32 @@ const ImageBatchCropper = ({
         const filename = `cropped_image_${i+1}_${timestamp}.${settings.format}`;
         downloadImage(dataURL, filename);
       }
-
+      
       // 完成回调
       if (onCropComplete) {
         onCropComplete(croppedResults);
       }
       
+      toast({
+        title: t('success'),
+        description: t('images_cropped_successfully', { count: croppedResults.length }),
+        variant: "success",
+      });
+      
       setLoading(false);
       setShowConfirmDialog(false);
     } catch (error) {
       console.error('Error completing batch crop:', error);
+      
+      toast({
+        title: t('error'),
+        description: t('failed_to_crop_images'),
+        variant: "destructive",
+      });
+      
       setLoading(false);
       setShowConfirmDialog(false);
     }
-  };
-
-  // 获取裁剪区域像素
-  const getCropAreaPixels = async (img: HTMLImageElement, settings: CropSettings): Promise<CroppedArea> => {
-    return new Promise((resolve) => {
-      // 这里简化处理，假设所有设置都可以直接转换为裁剪区域
-      resolve({
-        x: settings.crop.x,
-        y: settings.crop.y,
-        width: settings.dimensions.width,
-        height: settings.dimensions.height
-      });
-    });
   };
 
   // 修改 handleReset 函数
@@ -329,6 +417,12 @@ const ImageBatchCropper = ({
     // 重置尺寸
     setDimensions({ ...originalDimensions });
     setPreviewDimensions({ ...originalDimensions });
+    // 添加用户反馈
+    toast({
+      title: t('info'),
+      description: t('settings_reset'),
+      variant: "default",
+    });
   };
   
   // 添加宽高比选项
@@ -398,7 +492,12 @@ const ImageBatchCropper = ({
   // 修改 Set 按钮的点击处理函数
   const handleSaveSettings = () => {
     saveCurrentImageSettings();
-    // 可以添加用户反馈，例如显示一个消息
+    // 添加用户反馈
+    toast({
+      title: t('success'),
+      description: t('settings_saved'),
+      variant: "success",
+    });
   };
 
   // 修改 Cancel 按钮的点击处理函数
