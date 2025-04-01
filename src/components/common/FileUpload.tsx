@@ -52,11 +52,11 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(({
   const t = useTranslations('home');
 
   return (
-    <div ref={ref} className="w-full max-w-xl mx-auto">
+    <div ref={ref} className="w-full max-w-2xl mx-auto">
       <div
         {...getRootProps()}
         className={`
-          border-2 border-dashed rounded-md p-8 text-center cursor-pointer transition-colors
+          border-2 border-dashed rounded-md p-12 text-center cursor-pointer transition-colors
           ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400'}
         `}
       >
