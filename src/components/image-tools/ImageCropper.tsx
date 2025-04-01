@@ -279,7 +279,7 @@ const ImageCropper = ({
     <div className="flex flex-col md:flex-row w-full gap-6">
       <div 
         ref={cropperRef}
-        className="relative w-full md:w-2/3 h-[600px] bg-gray-100 rounded-md overflow-hidden"
+        className="relative w-full md:w-2/3 bg-gray-100 rounded-md overflow-hidden"
       >
         <Cropper
           image={imageSrc}
@@ -355,8 +355,8 @@ const ImageCropper = ({
               {t('original')}: {originalDimensions.width} × {originalDimensions.height}
             </span>
           </div>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
+          <div className="flex items-center justify-end space-x-2">
+            <div className="flex items-center space-x-1">
               <label className="text-sm text-gray-600">W:</label>
               <input
                 type="number"
@@ -367,7 +367,7 @@ const ImageCropper = ({
                 min="1"
               />
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1">
               <label className="text-sm text-gray-600">H:</label>
               <input
                 type="number"
@@ -382,7 +382,7 @@ const ImageCropper = ({
           </div>
         </div>
 
-        <div className="space-y-2">
+        <div className="flex items-center justify-between">
           <label className="text-sm font-medium text-gray-700">{t('crop_shape')}</label>
           <Select
             value={selectedShape}
@@ -401,7 +401,7 @@ const ImageCropper = ({
           </Select>
         </div>
 
-        <div className="space-y-2">
+        <div className="flex items-center justify-between">
           <label className="text-sm font-medium text-gray-700">{t('output_format')}</label>
           <Select
             value={selectedFormat}

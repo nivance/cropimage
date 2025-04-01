@@ -43,7 +43,7 @@ export default function CropSection() {
                 </p>
             </div>
 
-            <div id="upload-section" className="mb-8">
+            <div id="upload-section" className="mb-16">
                 <FileUpload
                     onFileSelect={handleFileSelect}
                     supportedFormats={config.support_formates}
