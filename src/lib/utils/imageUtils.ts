@@ -102,24 +102,26 @@ export const cropImage = (
     throw new Error('Could not get canvas context');
   }
 
-  // Set canvas dimensions to the cropped area size
+  // 设置画布尺寸为裁剪区域大小
   canvas.width = crop.width;
   canvas.height = crop.height;
 
-  // Apply transformations
+  // 应用变换
   ctx.save();
+  
+  // 移动到画布中心进行旋转
   ctx.translate(canvas.width / 2, canvas.height / 2);
-
-  // Apply rotation (in radians)
+  
+  // 应用旋转（转换为弧度）
   ctx.rotate((rotation * Math.PI) / 180);
-
-  // Apply flips
+  
+  // 应用翻转
   ctx.scale(
     flip.horizontal ? -1 : 1,
     flip.vertical ? -1 : 1
   );
 
-  // Draw the image at the correct position
+  // 绘制图像
   ctx.drawImage(
     image,
     crop.x,
@@ -132,7 +134,7 @@ export const cropImage = (
     canvas.height
   );
 
-  // Restore the canvas context
+  // 恢复画布上下文
   ctx.restore();
 
   return canvas;
@@ -143,8 +145,8 @@ export const cropImage = (
  */
 export const applyCropMask = (
   canvas: HTMLCanvasElement,
-  shape: 'circle' | 'heart' | 'square' | 'polygon' | 'custom',
-  customPath?: Path2D
+  shape: 'rect' | 'circle' | 'heart' | 'square' | 'polygon',
+  aspectRatio?: number
 ): HTMLCanvasElement => {
   const ctx = canvas.getContext('2d');
 
@@ -175,8 +177,18 @@ export const applyCropMask = (
   ctx.beginPath();
 
   if (shape === 'circle') {
-    const radius = Math.min(width, height) / 2;
-    ctx.arc(width / 2, height / 2, radius, 0, 2 * Math.PI);
+    if (aspectRatio && aspectRatio !== 1) {
+      // Draw an ellipse
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const radiusX = width / 2;
+      const radiusY = height / 2;
+      ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, 2 * Math.PI);
+    } else {
+      // Draw a circle
+      const radius = Math.min(width, height) / 2;
+      ctx.arc(width / 2, height / 2, radius, 0, 2 * Math.PI);
+    }
   } else if (shape === 'square') {
     const size = Math.min(width, height);
     const x = (width - size) / 2;

@@ -5,7 +5,7 @@ import Cropper from 'react-easy-crop';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { loadImage, cropImage, applyCropMask, createImageFromCanvas, downloadImage } from '@/lib/utils/imageUtils';
+import { loadImage, applyCropMask, createImageFromCanvas, downloadImage } from '@/lib/utils/imageUtils';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/uis/dialog';
 import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -76,7 +76,6 @@ const ImageBatchCropper = ({
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [thumbnailScrollPosition, setThumbnailScrollPosition] = useState(0);
 
-  const imageRef = useRef<HTMLImageElement | null>(null);
   const cropperRef = useRef<HTMLDivElement>(null);
   const thumbnailsContainerRef = useRef<HTMLDivElement>(null);
   
@@ -124,7 +123,6 @@ const ImageBatchCropper = ({
     try {
       const imageSrc = images[selectedImageIndex].url;
       const img = await loadImage(imageSrc);
-      imageRef.current = img;
       
       // 设置原始尺寸
       setOriginalDimensions({ width: img.width, height: img.height });
@@ -355,7 +353,10 @@ const ImageBatchCropper = ({
         
         // 应用形状蒙版（如果需要）
         let finalCanvas = croppedCanvas;
-        if (settings.shape !== 'rect') {
+        if (settings.shape === 'circle') {
+          // 对于圆形/椭圆形状，传入宽高比
+          finalCanvas = applyCropMask(croppedCanvas, settings.shape, settings.aspectRatio);
+        } else if (settings.shape !== 'rect') {
           finalCanvas = applyCropMask(croppedCanvas, settings.shape);
         }
         
@@ -460,9 +461,6 @@ const ImageBatchCropper = ({
 
   const handleShapeChange = (value: CropShape) => {
     setSelectedShape(value);
-    if (value === 'circle') {
-      setSelectedAspectRatio(1); // 圆形时强制使用 1:1 比例
-    }
   };
 
   const handleDimensionChange = (type: 'width' | 'height', value: string) => {
@@ -613,6 +611,7 @@ const ImageBatchCropper = ({
               cropShape={selectedShape === 'circle' ? 'round' : 'rect'}
               onCropChange={onCropChange}
               onZoomChange={onZoomChange}
+              onRotationChange={onRotationChange}
               onCropComplete={onCropAreaComplete}
               maxZoom={3}
               minZoom={1}
