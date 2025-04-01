@@ -9,7 +9,6 @@ import { loadImage, applyCropMask, createImageFromCanvas, downloadImage } from '
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/uis/dialog';
 import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
 
 interface CroppedArea {
   x: number;
@@ -79,7 +78,6 @@ const ImageBatchCropper = ({
   const cropperRef = useRef<HTMLDivElement>(null);
   const thumbnailsContainerRef = useRef<HTMLDivElement>(null);
   
-  const { toast } = useToast();
   const t = useTranslations('home');
 
   // 重置裁剪设置函数
@@ -441,22 +439,10 @@ const ImageBatchCropper = ({
         onCropComplete(croppedResults);
       }
       
-      toast({
-        title: t('success'),
-        description: t('images_cropped_successfully', { count: croppedResults.length }),
-        variant: "success",
-      });
-      
       setLoading(false);
       setShowConfirmDialog(false);
     } catch (error) {
       console.error('Error completing batch crop:', error);
-      
-      toast({
-        title: t('error'),
-        description: t('failed_to_crop_images'),
-        variant: "destructive",
-      });
       
       setLoading(false);
       setShowConfirmDialog(false);
@@ -469,12 +455,6 @@ const ImageBatchCropper = ({
     // 重置尺寸
     setDimensions({ ...originalDimensions });
     setPreviewDimensions({ ...originalDimensions });
-    // 添加用户反馈
-    toast({
-      title: t('info'),
-      description: t('settings_reset'),
-      variant: "default",
-    });
   };
   
   // 添加宽高比选项
@@ -529,12 +509,6 @@ const ImageBatchCropper = ({
       }
     }
     
-    // 通知用户设置已保存
-    toast({
-      title: t('info'),
-      description: t('aspect_ratio_updated'),
-      variant: "default",
-    });
   };
 
   const handleShapeChange = (value: CropShape) => {
@@ -558,12 +532,6 @@ const ImageBatchCropper = ({
       }
     }
     
-    // 通知用户设置已保存
-    toast({
-      title: t('info'),
-      description: t('shape_updated'),
-      variant: "default",
-    });
   };
 
   const handleDimensionChange = (type: 'width' | 'height', value: string) => {
@@ -610,12 +578,6 @@ const ImageBatchCropper = ({
           onUpdateImageSettings(selectedImageIndex, settings);
         }
         
-        // 通知用户设置已保存
-        toast({
-          title: t('info'),
-          description: t('size_updated'),
-          variant: "default",
-        });
       }
     }, 500); // 500ms 延迟保存
     
@@ -643,13 +605,6 @@ const ImageBatchCropper = ({
         onUpdateImageSettings(selectedImageIndex, settings);
       }
     }
-    
-    // 通知用户设置已保存
-    toast({
-      title: t('info'),
-      description: t('format_updated'),
-      variant: "default",
-    });
   };
 
   // 修改 Cancel 按钮的点击处理函数
