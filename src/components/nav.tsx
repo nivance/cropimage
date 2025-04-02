@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import { navigation } from '@/lib/config';
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Nav() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -36,9 +37,11 @@ export default function Nav() {
   return (
     <nav className="w-auto border-gray-300 flex items-center justify-between p-2 px-4" aria-label="Global">
       <div className="flex items-center mr-4">
+        <a href={`/`} className="flex items-center mr-2" title="crop image">
+          <Image className="h-8" src="/favicon.svg" alt="crop image logo" width={28} height={28} />
+        </a>
         <a href={`/`} className="flex flex-col items-center" title="crop image">
-          <span className="text-blue-500 font-extrabold font-serif mb-[-0.5rem]" style={{ transform: 'rotate(-8deg)' }}>crop</span>
-          <span className="text-blue-500 font-extrabold font-serif" style={{ transform: 'rotate(-8deg)' }}>image</span>
+          <span className="text-blue-500 font-extrabold font-serif">Crop Image</span>
         </a>
       </div>
       
