@@ -129,6 +129,76 @@ const ImageCropper = ({
     }
   };
 
+  // 添加这些辅助函数到组件内部
+  const createImage = (url: string): Promise<HTMLImageElement> =>
+    new Promise((resolve, reject) => {
+      const image = new Image();
+      image.addEventListener('load', () => resolve(image));
+      image.addEventListener('error', (error) => reject(error));
+      image.src = url;
+    });
+
+  const getRadianAngle = (degreeValue: number): number => {
+    return (degreeValue * Math.PI) / 180;
+  };
+
+  const rotateSize = (width: number, height: number, rotation: number) => {
+    const rotRad = getRadianAngle(rotation);
+    return {
+      width: Math.abs(Math.cos(rotRad) * width) + Math.abs(Math.sin(rotRad) * height),
+      height: Math.abs(Math.sin(rotRad) * width) + Math.abs(Math.cos(rotRad) * height),
+    };
+  };
+
+  // 这个是根据react-easy-crop官方推荐的裁剪方法
+  const getCroppedImg = async (
+    imageSrc: string,
+    pixelCrop: CroppedArea,
+    rotation = 0,
+    flip = { horizontal: false, vertical: false }
+  ): Promise<HTMLCanvasElement> => {
+    const image = await createImage(imageSrc);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    if (!ctx) {
+      throw new Error('Canvas context is not available');
+    }
+
+    // 计算旋转后的尺寸
+    const rotated = rotateSize(image.width, image.height, rotation);
+
+    // 设置画布尺寸为旋转后的尺寸
+    canvas.width = rotated.width;
+    canvas.height = rotated.height;
+
+    // 在画布中心进行旋转
+    ctx.translate(rotated.width / 2, rotated.height / 2);
+    ctx.rotate(getRadianAngle(rotation));
+    ctx.scale(flip.horizontal ? -1 : 1, flip.vertical ? -1 : 1);
+    ctx.translate(-image.width / 2, -image.height / 2);
+
+    // 绘制原始图像
+    ctx.drawImage(image, 0, 0);
+
+    // 提取裁剪区域
+    const data = ctx.getImageData(
+      pixelCrop.x,
+      pixelCrop.y,
+      pixelCrop.width,
+      pixelCrop.height
+    );
+
+    // 设置画布尺寸为裁剪后的尺寸
+    canvas.width = pixelCrop.width;
+    canvas.height = pixelCrop.height;
+
+    // 将裁剪后的图像数据放回画布
+    ctx.putImageData(data, 0, 0);
+
+    return canvas;
+  };
+
   const handleCropComplete = async () => {
     try {
       setLoading(true);
@@ -137,33 +207,37 @@ const ImageCropper = ({
         throw new Error('Image or crop area not available');
       }
 
-      // Create the cropped canvas
-      const croppedCanvas = cropImage(
-        imageRef.current,
+      // 使用官方推荐的方法裁剪图像
+      const croppedCanvas = await getCroppedImg(
+        imageSrc,
         croppedAreaPixels,
-        { horizontal: false, vertical: false },
-        rotation
+        rotation,
+        { horizontal: false, vertical: false }
       );
 
-      // Apply mask if needed
+      // 应用形状蒙版（如果需要）
       let finalCanvas = croppedCanvas;
-      if (selectedShape !== 'rect') {
+      if (selectedShape === 'circle') {
+        // 对于圆形/椭圆形状，传入宽高比
+        finalCanvas = applyCropMask(croppedCanvas, selectedShape, selectedAspectRatio);
+      } else if (selectedShape !== 'rect') {
         finalCanvas = applyCropMask(croppedCanvas, selectedShape);
       }
 
-      // Resize the image if dimensions are set
+      // 调整尺寸
       if (dimensions.width > 0 && dimensions.height > 0) {
         const resizedCanvas = document.createElement('canvas');
         resizedCanvas.width = dimensions.width;
         resizedCanvas.height = dimensions.height;
         const ctx = resizedCanvas.getContext('2d');
         if (ctx) {
+          ctx.imageSmoothingQuality = 'high';
           ctx.drawImage(finalCanvas, 0, 0, dimensions.width, dimensions.height);
           finalCanvas = resizedCanvas;
         }
       }
 
-      // Get the data URL of the cropped image
+      // 获取数据URL
       const mimeType = getMimeType(selectedFormat);
       const dataURL = createImageFromCanvas(finalCanvas, mimeType);
 
