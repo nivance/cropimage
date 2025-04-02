@@ -13,8 +13,8 @@ export async function generateMetadata(context: { params: { locale: string } }):
   const { locale } = await params;
   const t = await getTranslations('metadata');
   return {
-    title: t("title"),
-    description: t("description"),
+    title: t("batch_title"),
+    description: t("batch_description"),
     keywords: t("keywords"),
     icons: [
       {
