@@ -3,13 +3,16 @@ import Link from "next/link";
 import { LocaleSwitcher } from "@/components/locale-switcher"
 import { useState, useRef, useEffect } from 'react';
 import { navigation } from '@/lib/config';
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Nav() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCropDropdownOpen, setIsCropDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const cropDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const convertLinks = navigation.convertMenu;
 
@@ -21,6 +24,9 @@ export default function Nav() {
       }
       if (cropDropdownRef.current && !cropDropdownRef.current.contains(event.target as Node)) {
         setIsCropDropdownOpen(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -35,14 +41,16 @@ export default function Nav() {
           <span className="text-blue-500 font-extrabold font-serif" style={{ transform: 'rotate(-8deg)' }}>image</span>
         </a>
       </div>
-      <div className="flex items-center justify-between gap-x-8">
-        <div className="hidden lg:flex flex-grow justify-start">
+      
+      {/* 桌面端菜单 */}
+      <div className="hidden lg:flex items-center justify-between gap-x-8">
+        <div className="flex flex-grow justify-start">
           <Link className="text-base text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" href="/">Home</Link>
         </div>
-        <div className="hidden lg:flex flex-grow justify-start">
+        <div className="flex flex-grow justify-start">
           <Link className="text-base text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" href="/batch-crop">Batch Crop</Link>
         </div>
-        <div className="hidden lg:flex lg:gap-x-4 flex-grow justify-start">
+        <div className="flex gap-x-4 flex-grow justify-start">
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -67,9 +75,79 @@ export default function Nav() {
           </div>
         </div>
       </div>
+      
+      {/* 移动端菜单按钮 */}
+      <div className="flex items-center lg:hidden">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="p-1"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </Button>
+      </div>
+      
       <div className="flex place-items-end items-center justify-end">
         <LocaleSwitcher />
       </div>
+      
+      {/* 移动端下拉菜单 */}
+      {isMobileMenuOpen && (
+        <div 
+          ref={mobileMenuRef}
+          className="absolute top-14 left-0 right-0 z-20 bg-white dark:bg-gray-800 border-t border-gray-200 shadow-lg py-2"
+        >
+          <div className="flex flex-col space-y-1 px-4">
+            <Link 
+              href="/" 
+              className="py-2 text-base text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
+            <Link 
+              href="/batch-crop" 
+              className="py-2 text-base text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Batch Crop
+            </Link>
+            
+            <div className="py-2">
+              <button
+                onClick={() => setIsCropDropdownOpen(!isCropDropdownOpen)}
+                className="text-base text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white flex items-center"
+              >
+                Convert Image
+                <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isCropDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isCropDropdownOpen && (
+                <div className="pl-4 mt-1 space-y-1">
+                  {convertLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className="block py-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        setIsCropDropdownOpen(false);
+                      }}
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
