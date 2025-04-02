@@ -44,12 +44,14 @@ export default function CropSection() {
             </div>
 
             <div id="upload-section" className="mb-16">
-                <FileUpload
-                    onFileSelect={handleFileSelect}
-                    supportedFormats={config.support_formates}
-                    uploadText={t('upload_text')}
-                    ref={uploadRef}
-                />
+                {!imageUrl && (
+                    <FileUpload
+                        onFileSelect={handleFileSelect}
+                        supportedFormats={config.support_formates}
+                        uploadText={t('upload_text')}
+                        ref={uploadRef}
+                    />
+                )}
             </div>
 
             {imageUrl && (
