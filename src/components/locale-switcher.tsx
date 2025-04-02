@@ -34,7 +34,7 @@ export const LocaleSwitcher = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="sm" className="flex items-center" aria-label="lang-switcher">
+        <Button size="sm" variant="outline" className="flex items-center bg-transparent hover:bg-gray-100" aria-label="lang-switcher">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="size-6 stroke-current stroke-2  flex-shrink-0"
