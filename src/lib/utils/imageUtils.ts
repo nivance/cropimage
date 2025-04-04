@@ -229,12 +229,7 @@ export const applyCropMask = (
         height / 2 + radius * Math.sin(angle)
       );
     }
-  } else if (shape === 'custom' && customPath) {
-    // Since Path2D.addPath is not universally supported, we'll use a workaround
-    // Draw the custom path directly instead
-    ctx.stroke(customPath);
-    ctx.fill(customPath);
-  }
+  } 
 
   ctx.closePath();
   ctx.clip();
