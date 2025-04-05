@@ -42,17 +42,14 @@ const defaultBenefits: Benefit[] = [
   }
 ];
 
-const WhyChooseUs = ({
-  title = "Why Choose Our Image Cropper",
-  benefits = defaultBenefits,
-  className = ""
-}: WhyChooseUsProps) => {
+const WhyChooseUs = () => {
 
   const whyus = useTranslations('whyus');
   const home = useTranslations('home');
+  const benefits = defaultBenefits;
 
   return (
-    <section className={`py-12 ${className}`}>
+    <section className={`py-12`}>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-10">{home('whyus')}</h2>
 
