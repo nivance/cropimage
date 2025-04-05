@@ -1,8 +1,6 @@
 'use client';
 import Link from "next/link";
 import { config } from "@/lib/config";
-import { localeNames } from "@/i18n/locale";
-import { Button } from "./ui/button";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from 'next-intl';
 import { navigation } from '@/lib/config';
