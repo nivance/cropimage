@@ -6,8 +6,8 @@ export const navigation = {
     { name: 'Privacy Policy', href: '/privacy' },
   ],
   cropMenu: [
-    { name: 'Batch Crop', href: '/batch-crop' },
     { name: 'Image Crop', href: '' },
+    { name: 'Batch Crop', href: '/batch-crop' },
   ],
   convertMenu: [
     { name: 'Convert webp to jpg', href: '/convert-webp-to-jpg' },
