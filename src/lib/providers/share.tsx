@@ -1,6 +1,5 @@
 "use client";
 import { config } from "@/lib/config";
-import { Game } from '@/models/types/game';
 import {
   TwitterShareButton,
   TwitterIcon,
@@ -20,9 +19,9 @@ import {
   WhatsappIcon,
 } from "next-share";
 
-export default function Share({ game }: { game: Game }) {
-  const shareTitle = "Play " + game.title + " Online for Free";
-  const shareUrl = config.baseUrl + "/" + game.name
+export default function Share({ title, subUrl }: { title: string, subUrl: string }) {
+  const shareTitle = "Play " + title + " Online for Free";
+  const shareUrl = config.baseUrl + "/" + subUrl
   return (
     <div className="flex flex-row gap-5 py-4">
       <TwitterShareButton url={shareUrl} title={shareTitle}>
