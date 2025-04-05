@@ -145,7 +145,7 @@ export const cropImage = (
  */
 export const applyCropMask = (
   canvas: HTMLCanvasElement,
-  shape: 'rect' | 'circle' | 'heart' | 'square' | 'polygon',
+  shape: 'rect' | 'circle' | 'heart' | 'square' | 'polygon' | 'round',
   aspectRatio?: number
 ): HTMLCanvasElement => {
   const ctx = canvas.getContext('2d');

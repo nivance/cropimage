@@ -28,7 +28,7 @@ interface ImageCropperProps {
   uploadRef?: React.RefObject<HTMLDivElement>;
 }
 
-type CropShape = 'rect' | 'circle' | 'heart' | 'square' | 'polygon';
+type CropShape = 'rect' | 'circle' | 'heart' | 'square' | 'polygon' | 'round';
 type OutputFormat = 'jpeg' | 'png' | 'webp';
 
 const ImageCropper = ({
