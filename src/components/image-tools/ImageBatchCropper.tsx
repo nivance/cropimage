@@ -395,7 +395,7 @@ const ImageBatchCropper = ({
         // 使用官方推荐的方法裁剪图像
         const croppedCanvas = await getCroppedImg(
           image.url,
-          settings.croppedAreaPixels,
+          settings.croppedAreaPixels || { x: 0, y: 0, width: 0, height: 0 },
           settings.rotation,
           { horizontal: false, vertical: false }
         );
