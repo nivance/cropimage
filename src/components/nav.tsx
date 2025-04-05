@@ -95,7 +95,10 @@ export default function Nav() {
         </Button>
       </div>
       
-      <div className="flex place-items-end items-center justify-end">
+      <div className="flex place-items-end items-center justify-end space-x-2">
+        <a href="https://github.com/nivance/cropimage" target="_blank" className="ml-4" title="crop image">
+          <Image className="h-8" src="/github.svg" alt="crop image github repo" width={24} height={24} />
+        </a>
         <LocaleSwitcher />
       </div>
       
